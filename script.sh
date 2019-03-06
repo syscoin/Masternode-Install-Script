@@ -31,6 +31,7 @@ install_swap(){
     sudo swapon /swapfile
     echo '/swapfile none swap sw 0 0' | sudo tee --append /etc/fstab > /dev/null
     sudo mount -a
+    clear
 }
 
 install_dependencies(){
@@ -56,6 +57,7 @@ git_clone_repository(){
   if [ ! -d ~/syscoin ]; then
     git clone https://github.com/syscoin/syscoin.git
   fi
+  clear
 }
 
 git_checkout_branch(){
@@ -70,6 +72,7 @@ git_checkout_branch(){
     exit 1
   fi
   git pull
+  clear
 }
 
 autogen(){
