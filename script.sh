@@ -127,8 +127,11 @@ stop_syscoind(){
   echo "STOPPING SYSCOIND AND ADJUSTING SYSCOIN.CONF & MASTERNODE.CONF"
   cd ~/syscoin/src
   ./syscoin-cli stop
+  echo "Waiting 30secs for syscoind to stop"
+  sleep 30s
   echo "$SYSCOIN_CONF_MN" > ~/.syscoin/syscoin.conf
   echo "$MASTERNODE_CONF" > ~/.syscoin/masternode.conf
+  clear
 }
 
 install_sentinel(){
@@ -226,6 +229,7 @@ clear
 get_masternode_status
 stop_syscoind
 install_sentinel
+start_syscoind
 
 echo "Just a couple more things to do!."
 echo ""
