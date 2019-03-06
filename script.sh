@@ -11,7 +11,7 @@ update_system(){
 }
 
 install_ufw(){
-  echo "ISNTALLING SWAP FILES"
+  echo "ISNTALLING UFW"
   sudo apt-get install ufw -y
   sudo ufw default deny incoming
   sudo ufw default allow outgoing
@@ -22,6 +22,18 @@ install_ufw(){
   clear
 }
 
+install_swap(){
+    echo "CREATING SWAP FILE"
+    sudo swapoff -a
+    sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    echo '/swapfile none swap sw 0 0' | sudo tee --append /etc/fstab > /dev/null
+    sudo mount -a
+}
+
+}
 install_dependencies(){
   echo "ISNTALLING DEPENDENCIES"
   # git
@@ -113,6 +125,7 @@ clear
 # prepare to build
 update_system
 install_ufw
+install_swap
 install_dependencies
 git_clone_repository
 git_checkout_branch
