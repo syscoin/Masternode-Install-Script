@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source <(curl -sL https://github.com/bigpoppa-sys/sysmn/edit/master/mn-script.sh)
+source https://github.com/bigpoppa-sys/sysmn/edit/master/mn-script.sh
 
 update_system(){
   echo "UPDATING SYSTEM"
