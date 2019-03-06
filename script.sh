@@ -226,7 +226,6 @@ clear
 get_masternode_status
 stop_syscoind
 install_sentinel
-start_syscoind
 
 echo "Just a couple more things to do!."
 echo ""
