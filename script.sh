@@ -155,6 +155,11 @@ install_sentinel(){
   clear
 }
 
+create_cron(){
+  (crontab -l 2>/dev/null; echo "*/5 * * * * cd /home/root/syscoin/src/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log") | crontab -
+}
+
+
 # syscoin.conf value defaults
 SYSCOIN_CONF=$(cat <<EOF
 rpcuser=username
@@ -229,6 +234,7 @@ clear
 get_masternode_status
 stop_syscoind
 install_sentinel
+create_cron
 start_syscoind
 
 echo "Just a couple more things to do!."
