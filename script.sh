@@ -117,7 +117,7 @@ get_masternode_status(){
   ./syscoin-cli getblockchaininfo && \
   ./syscoin-cli mnsync status
   echo ""
-  read -e -p "Check again? Make sure geth is synced and mnsync is finished, then press n and enter [Y/n]: " CHECK_AGAIN
+  read -e -p "Check again? Make sure geth is synced and mnsync is finished, then type n and enter [Y/n]: " CHECK_AGAIN
   if [ "$CHECK_AGAIN" = "" ] || [ "$CHECK_AGAIN" = "y" ] || [ "$CHECK_AGAIN" = "Y" ]; then
     get_masternode_status
   fi
