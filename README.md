@@ -58,4 +58,5 @@ Save.
 ~/syscoin/src/syscoin-cli masternodelist json yourvpsip
 
 
-Special thanks to @doublesharp as I have adjusted from his script.
+Special thanks to @doublesharp as I have adjusted from his script.\
+P.S First github try! So shhh, cut me some slack
