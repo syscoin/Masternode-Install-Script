@@ -19,7 +19,10 @@ To start:
 7. Once built you will need to adjust syscoin.conf and masternode.conf with your details.
 
 **Manual Steps**\
-Do a ./syscoin-cli getnewaddress <label> legacy and head to discord's testnet channel to ask for 100,000 tSYS!\
+
+**Make an address**\
+./syscoin-cli getnewaddress label legacy
+and head to discord's testnet channel to ask for 100,000 tSYS!
 
 You now need to set up Masternode.conf and Syscoin.conf with the correct MN details.\
 
