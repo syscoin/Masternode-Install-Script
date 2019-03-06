@@ -1,2 +1,2 @@
 # sysmn
-Script
+Script for SYS4 Testnet
