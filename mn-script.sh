@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
 update_system(){
   echo "UPDATING SYSTEM"
   # update package and upgrade Ubuntu
-  sudo DEBIAN_FRONTEND=noninteractive apt -y update
-  sudo DEBIAN_FRONTEND=noninteractive apt -y upgrade
-  sudo DEBIAN_FRONTEND=noninteractive apt -y autoremove
+  sudo apt -y update
+  sudo apt -y upgrade
+  sudo apt -y autoremove
   sudo apt install git -y
   clear
 }
