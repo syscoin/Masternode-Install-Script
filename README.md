@@ -4,7 +4,7 @@ Script for SYS4 Testnet
 As we are running a hot wallet for testing purposes without QT, this is 90% auto and 10% manual. Not common practice, but to just get these test nodes up quick and easy, I am just running from root. Will adjust script come mainnet time.
 
 To start:
-1. Create your VPS with following configs
+1. Create your VPS with following configs:\
     64-bit CPU — 2 Cores (4 preferred)\
     4gb RAM (real) minimum (8gb RAM preferred)\
     4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap\
