@@ -136,3 +136,5 @@ create_syscoin_config
 clear
 
 echo "Just a couple more things to do!."
+
+
