@@ -61,5 +61,5 @@ Save.
 ~/syscoin/src/syscoin-cli masternodelist json yourvpsip
 
 
-Special thanks to @doublesharp as I have adjusted from his script.\
+Special thanks to @doublesharp as I have adjusted from his script. Plus @johnp for his guide writeups as always! https://medium.com/@bittyjohn1954/syscoin-4-testnet-setup-unofficial-guide-assuming-a-clean-install-f70f9617e253\
 P.S First github try! So shhh, cut me some slack
