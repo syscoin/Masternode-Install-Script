@@ -21,10 +21,10 @@ To start:
 **Manual Steps**\
 
 **Make an address**\
-./syscoin-cli getnewaddress label legacy
+./syscoin-cli getnewaddress label legacy\
 and head to discord's testnet channel to ask for 100,000 tSYS!
 
-You now need to set up Masternode.conf and Syscoin.conf with the correct MN details.\
+You now need to set up Masternode.conf and Syscoin.conf with the correct MN details.
 
 **First get a MN key and save it somewhere**\
 ./syscoin-cli masternode genkey
