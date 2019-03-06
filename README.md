@@ -18,44 +18,44 @@ To start:
 6. Follow prompts.
 7. Once built you will need to adjust syscoin.conf and masternode.conf with your details.
 
-**Manual Steps**
-Do a ./syscoin-cli getnewaddress <label> legacy and head to discord's testnet channel to ask for 100,000 tSYS!
+**Manual Steps**\
+Do a ./syscoin-cli getnewaddress <label> legacy and head to discord's testnet channel to ask for 100,000 tSYS!\
 
-You now need to set up Masternode.conf and Syscoin.conf with the correct MN details.
+You now need to set up Masternode.conf and Syscoin.conf with the correct MN details.\
 
-**First get a MN key and save it somewhere**
-./syscoin-cli masternode genkey
+**First get a MN key and save it somewhere**\
+./syscoin-cli masternode genkey\
 
-**Find your TX and save it somewhere**
-./syscoin-cli listtransactions
+**Find your TX and save it somewhere**\
+./syscoin-cli listtransactions\
 
-**Now get the index and add it to the end of the TX you just saved**
-./syscoin-cli masternode outputs
+**Now get the index and add it to the end of the TX you just saved**\
+./syscoin-cli masternode outputs\
 
-**Stop Syscoind**
-./syscoin-cli stop
+**Stop Syscoind**\
+./syscoin-cli stop\
 
-**Edit syscoin.conf - change your IP and genkey**
-nano ~/.syscoin/syscoin.conf
+**Edit syscoin.conf - change your IP and genkey**\
+nano ~/.syscoin/syscoin.conf\
 
-**Edit masternode.conf and add your IP,MN Key,Collateral TX and Index**
-nano ~/.syscoin/masternode.conf
-Save.
+**Edit masternode.conf and add your IP,MN Key,Collateral TX and Index**\
+nano ~/.syscoin/masternode.conf\
+Save.\
 
-**Start syscoind**
-~/syscoin/src/syscoind
+**Start syscoind**\
+~/syscoin/src/syscoind\
 
-**Check the status**
-./syscoin-cli getblockchaininfo
+**Check the status**\
+./syscoin-cli getblockchaininfo\
 
-**Check Masternode has Synced**
-./syscoin-cli mnsync status
+**Check Masternode has Synced**\
+./syscoin-cli mnsync status\
 
-**Start Masternode**
-./syscoin-cli masternode start-all
+**Start Masternode**\
+./syscoin-cli masternode start-all\
 
-**Check it has started**
-~/syscoin/src/syscoin-cli masternodelist json yourvpsip
+**Check it has started**\
+~/syscoin/src/syscoin-cli masternodelist json yourvpsip\
 
 
 Special thanks to @doublesharp as I have adjusted from his script.
