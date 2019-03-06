@@ -14,8 +14,6 @@ Linux OS — Ubuntu 18.04.1 LTS (Bionic Beaver). Sys4 will not compile on ea
 Port open for Syscoin (default: 8369) and Geth (default: 30303)
 
 2. Login as root.
-3. nano sys.sh
-4. Copy script.sh and paste into
-5. chmod +x sys.sh && ./sys.sh
+3. wget https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh  && chmod +x script.sh && ./script.sh
 6. Follow prompts.
 7. Once built you will need to adjust syscoin.conf and masternode.conf with your details.
