@@ -202,6 +202,9 @@ SENTINEL_CONF=$(cat <<EOF
 # syscoin conf location
 syscoin_conf=/home/root/.syscoin/syscoin.conf
 
+#network
+network=mainnet
+
 # db connection details
 db_name=database/sentinel.db
 db_driver=sqlite
