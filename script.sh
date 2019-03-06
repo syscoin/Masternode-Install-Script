@@ -103,8 +103,8 @@ start_syscoind(){
   echo "STARTING SYSCOIND"
   cd ~/syscoin/src
   ./syscoind -daemon
-  echo "Waiting 15secs for syscoind to start up"
-  sleep 15s
+  echo "Waiting 30secs for syscoind to start up"
+  sleep 30s
   clear
 }
 
@@ -131,8 +131,8 @@ stop_syscoind(){
 install_sentinel(){
   echo "INSTALLING SENTINEL"
   ~/syscoin/src/syscoind
-  echo "Waiting 15secs for syscoind to start up"
-  sleep 15s
+  echo "Waiting 30secs for syscoind to start up"
+  sleep 30s
   cd ~/syscoin/src
   sudo apt-get update
   sudo apt-get install -y git python-virtualenv
@@ -191,10 +191,8 @@ SENTINEL_CONF=$(cat <<EOF
 syscoin_conf=/home/root/.syscoin/syscoin.conf
 
 # db connection details
-db_name=/home/root/sentinel/database/sentinel.db
+db_name=database/sentinel.db
 db_driver=sqlite
-
-# network
 EOF
 )
 
