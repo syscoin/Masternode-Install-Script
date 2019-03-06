@@ -24,38 +24,38 @@ Do a ./syscoin-cli getnewaddress <label> legacy and head to discord's testnet ch
 You now need to set up Masternode.conf and Syscoin.conf with the correct MN details.\
 
 **First get a MN key and save it somewhere**\
-./syscoin-cli masternode genkey\
+./syscoin-cli masternode genkey
 
 **Find your TX and save it somewhere**\
-./syscoin-cli listtransactions\
+./syscoin-cli listtransactions
 
 **Now get the index and add it to the end of the TX you just saved**\
-./syscoin-cli masternode outputs\
+./syscoin-cli masternode outputs
 
 **Stop Syscoind**\
-./syscoin-cli stop\
+./syscoin-cli stop
 
 **Edit syscoin.conf - change your IP and genkey**\
-nano ~/.syscoin/syscoin.conf\
+nano ~/.syscoin/syscoin.conf
 
 **Edit masternode.conf and add your IP,MN Key,Collateral TX and Index**\
-nano ~/.syscoin/masternode.conf\
-Save.\
+nano ~/.syscoin/masternode.conf
+Save.
 
 **Start syscoind**\
-~/syscoin/src/syscoind\
+~/syscoin/src/syscoind
 
 **Check the status**\
-./syscoin-cli getblockchaininfo\
+./syscoin-cli getblockchaininfo
 
 **Check Masternode has Synced**\
-./syscoin-cli mnsync status\
+./syscoin-cli mnsync status
 
 **Start Masternode**\
-./syscoin-cli masternode start-all\
+./syscoin-cli masternode start-all
 
 **Check it has started**\
-~/syscoin/src/syscoin-cli masternodelist json yourvpsip\
+~/syscoin/src/syscoin-cli masternodelist json yourvpsip
 
 
 Special thanks to @doublesharp as I have adjusted from his script.
