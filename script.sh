@@ -156,7 +156,7 @@ install_sentinel(){
 }
 
 create_cron(){
-  (crontab -l 2>/dev/null; echo "*/5 * * * * cd /home/root/syscoin/src/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log") | crontab -
+  (crontab -l 2>/dev/null; echo "*/5 * * * * cd /root/syscoin/src/sentinel && ./venv/bin/python bin/sentinel.py 2>&1 >> sentinel-cron.log") | crontab -
 }
 
 
@@ -200,7 +200,7 @@ EOF
 # SENTINEL.conf value defaults
 SENTINEL_CONF=$(cat <<EOF
 # syscoin conf location
-syscoin_conf=/home/root/.syscoin/syscoin.conf
+syscoin_conf=/root/.syscoin/syscoin.conf
 
 #network
 network=mainnet
