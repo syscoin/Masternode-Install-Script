@@ -22,6 +22,7 @@ do_exit(){
   echo ""
   echo "  demesm @ address SkSsc5DDejrXq2HfRf9B9QDqHrNiuUvA9Y"
   echo "  doublesharp @ alias doublesharp / address Sj2UbC3rYnbDULmQTir24swKactV6WPzoh"
+  echo "  bigpoppa @ address Sg7kUj6fVFVeMzKzxi2qiCdDPus1uEymkP"
   echo ""
   echo "Goodbye!"
   echo ""
@@ -38,26 +39,7 @@ update_system(){
   clear
 }
 
-maybe_prompt_for_swap_file(){
-  # Create swapfile if less than 4GB memory
-  MEMORY_RAM=$(free -m | awk '/^Mem:/{print $2}')
-  MEMORY_SWAP=$(free -m | awk '/^Swap:/{print $2}')
-  MEMORY_TOTAL=$(($MEMORY_RAM + $MEMORY_SWAP))
-  if [ $MEMORY_TOTAL -lt 3500 ]; then
-    echo ""
-    echo "Server memory is less than 4GB... you will be able to compile Syscoin Core faster by creating a swap file."
-    echo ""
-    if ! grep -q '/swapfile' /etc/fstab ; then
-      read -e -p "Do you want to create a swap file? [Y/n]: " CREATE_SWAP
-      if [ "$CREATE_SWAP" = "" ] || [ "$CREATE_SWAP" = "y" ] || [ "$CREATE_SWAP" = "Y" ]; then
-        IS_CREATE_SWAP="Y";
-      fi
-    fi
-  fi
-}
-
-maybe_create_swap_file(){
-  if [ "$IS_CREATE_SWAP" = "Y" ]; then
+create_swap_file(){
     echo "Creating a 4GB swapfile..."
     sudo swapoff -a
     sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
@@ -67,7 +49,7 @@ maybe_create_swap_file(){
     echo '/swapfile none swap sw 0 0' | sudo tee --append /etc/fstab > /dev/null
     sudo mount -a
     echo "Swapfile created."
-  fi
+    clear
 }
 
 install_dependencies(){
@@ -155,7 +137,7 @@ install_sentinel(){
   else
     cd sentinel
     git fetch
-    git checkout master --quiet
+    git checkout sys4 --quiet
     git pull
   fi
   clear
@@ -175,12 +157,10 @@ install_virtualenv(){
 # syscoind.service config
 SENTINEL_CONF=$(cat <<EOF
 # syscoin conf location
-syscoin_conf=/home/syscoin/.syscoincore/syscoin.conf
-
+syscoin_conf=/home/syscoin/.syscoin/syscoin.conf
 # db connection details
 db_name=/home/syscoin/sentinel/database/sentinel.db
 db_driver=sqlite
-
 # network
 EOF
 )
@@ -188,7 +168,6 @@ EOF
 # syscoind.service config
 SENTINEL_PING=$(cat <<EOF
 #!/bin/bash
-
 ~/sentinel/venv/bin/python ~/sentinel/bin/sentinel.py 2>&1 >> ~/sentinel/sentinel-cron.log
 EOF
 )
@@ -219,7 +198,7 @@ configure_sentinel(){
 
   # setup cron for syscoin user
   sudo crontab -r -u syscoin
-  sudo crontab -l -u syscoin | grep sentinel-ping || echo "*/10 * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
+  sudo crontab -l -u syscoin | grep sentinel-ping || echo "*/5 * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
   clear
 }
 
@@ -268,7 +247,7 @@ upgrade() {
   start_syscoind      # start syscoind back up
   
   echo "$MESSAGE_COMPLETE"
-  echo "Syscoin Core update complete using https://www.github.com/syscoin/syscoin/tree/${SYSCOIN_BRANCH}!"
+  echo "Syscoin update complete using https://www.github.com/syscoin/syscoin/tree/${SYSCOIN_BRANCH}!"
   do_exit             # exit the script
 }
 
@@ -280,12 +259,12 @@ if grep -q '^syscoin:' /etc/passwd; then
   clear
   echo "$MESSAGE_UPGRADE"
   echo ""
-  echo "  Choose [Y]es (default) to upgrade Syscoin Core on a working masternode."
+  echo "  Choose [Y]es (default) to upgrade Syscoin on a working masternode."
   echo "  Choose [N]o to re-run the configuration process for your masternode."
   echo ""
   echo "$HBAR"
   echo ""
-  read -e -p "Upgrade/recompile Syscoin Core? [Y/n]: " IS_UPGRADE
+  read -e -p "Upgrade/recompile Syscoin? [Y/n]: " IS_UPGRADE
   if [ "$IS_UPGRADE" = "" ] || [ "$IS_UPGRADE" = "y" ] || [ "$IS_UPGRADE" = "Y" ]; then
     read -e -p "Upgrade Sentinel as well? [Y/n]: " IS_UPGRADE_SENTINEL
     upgrade
@@ -297,7 +276,7 @@ RESOLVED_ADDRESS=$(curl -s ipinfo.io/ip)
 
 echo "$MESSAGE_CONFIGURE"
 echo ""
-echo "This script has been tested on Ubuntu 16.04 LTS x64."
+echo "This script has been tested on Ubuntu 18.04 LTS x64."
 echo ""
 echo "Before starting script ensure you have: "
 echo ""
@@ -324,8 +303,8 @@ externalip="$RESOLVED_ADDRESS"
 port="$DEFAULT_PORT"
 
 # try to read them in from an existing install
-if sudo test -f /home/syscoin/.syscoincore/syscoin.conf; then
-  sudo cp /home/syscoin/.syscoincore/syscoin.conf ~/syscoin.conf
+if sudo test -f /home/syscoin/.syscoin/syscoin.conf; then
+  sudo cp /home/syscoin/.syscoin/syscoin.conf ~/syscoin.conf
   sudo chown $(whoami).$(id -g -n $(whoami)) ~/syscoin.conf
   source ~/syscoin.conf
   rm -f ~/syscoin.conf
@@ -372,7 +351,6 @@ masternode_private_key
 
 # read -e -p "Configure for mainnet? [Y/n]: " IS_MAINNET
 
-maybe_prompt_for_swap_file
 
 #Generating Random Passwords
 RPC_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
@@ -383,18 +361,17 @@ clear
 # syscoin conf file
 SYSCOIN_CONF=$(cat <<EOF
 # rpc config
-rpcuser=user
-rpcpassword=$RPC_PASSWORD
-rpcallowip=127.0.0.1
-rpcbind=127.0.0.1
-# syscoind config
+rpcuser=username
+rpcpassword=password
+rpcport=8370
+addnode=54.203.169.179
+addnode=54.190.239.153
+gethtestnet=1
 listen=1
 server=1
 daemon=1
 maxconnections=24
-addressindex=1
-debug=0
-# masternode config
+#
 masternode=1
 masternodeprivkey=$MASTERNODE_PRIVATE_KEY
 externalip=$EXTERNAL_ADDRESS
@@ -405,17 +382,28 @@ EOF
 # testnet config
 SYSCOIN_TESTNET_CONF=$(cat <<EOF
 # testnet config
-testnet=1
-addnode=40.121.201.195
-addnode=40.71.212.2
-addnode=40.76.48.206
+rpcuser=username
+rpcpassword=password
+rpcport=8370
+addnode=54.203.169.179
+addnode=54.190.239.153
+gethtestnet=1
+listen=1
+server=1
+daemon=1
+maxconnections=24
+#
+masternode=1
+masternodeprivkey=$MASTERNODE_PRIVATE_KEY
+externalip=$EXTERNAL_ADDRESS
+port=$MASTERNODE_PORT
 EOF
 )
 
 # syscoind.service config
 SYSCOIND_SERVICE=$(cat <<EOF
 [Unit]
-Description=Syscoin Core Service
+Description=Syscoin Service
 After=network.target iptables.service firewalld.service
  
 [Service]
@@ -442,7 +430,6 @@ create_and_configure_syscoin_user(){
   grep -q "alias syscoin-cli" ~/.bashrc || echo "alias syscoin-cli='syscli'" >> ~/.bashrc
   grep -q "sysd\(\)" ~/.bashrc || echo "sysd() { sudo su -c \"syscoind \$*\" syscoin; }" >> ~/.bashrc
   grep -q "alias syscoind" ~/.bashrc || echo "alias syscoind='sysd'" >> ~/.bashrc
-  grep -q "sysmasternode\(\)" ~/.bashrc || echo "sysmasternode() { bash <(curl -sL doublesharp.com/sysmasternode); }" >> ~/.bashrc
 
   echo "$SYSCOIN_CONF" > ~/syscoin.conf
   if [ ! "$IS_MAINNET" = "" ] && [ ! "$IS_MAINNET" = "y" ] && [ ! "$IS_MAINNET" = "Y" ]; then
@@ -453,11 +440,11 @@ create_and_configure_syscoin_user(){
   sudo service syscoind stop
 
   # create conf directory
-  sudo mkdir -p /home/syscoin/.syscoincore
-  sudo rm -rf /home/syscoin/.syscoincore/debug.log
-  sudo mv -f ~/syscoin.conf /home/syscoin/.syscoincore/syscoin.conf
-  sudo chown -R syscoin.syscoin /home/syscoin/.syscoincore
-  sudo chmod 600 /home/syscoin/.syscoincore/syscoin.conf
+  sudo mkdir -p /home/syscoin/.syscoin
+  sudo rm -rf /home/syscoin/.syscoin/debug.log
+  sudo mv -f ~/syscoin.conf /home/syscoin/.syscoin/syscoin.conf
+  sudo chown -R syscoin.syscoin /home/syscoin/.syscoin
+  sudo chmod 600 /home/syscoin/.syscoin/syscoin.conf
   clear
 }
 
@@ -488,6 +475,7 @@ install_ufw(){
   sudo ufw default allow outgoing
   sudo ufw allow ssh
   sudo ufw allow 8369/tcp
+  sudo ufw allow 30303/tcp
   yes | sudo ufw enable
   clear
 }
@@ -503,8 +491,7 @@ get_masternode_status(){
   fi
 }
 
-# if there is <4gb and the user said yes to a swapfile...
-maybe_create_swap_file
+create_swap_file
 
 # prepare to build
 update_system
