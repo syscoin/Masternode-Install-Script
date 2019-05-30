@@ -10,7 +10,7 @@ fi
 HBAR="---------------------------------------------------------------------------------------"
 
 # import messages
-source <(curl -sL https://gist.githubusercontent.com/doublesharp/bacf7f9ac1ff15dccc1acffe49f989e9/raw/messages.sh)
+source <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/messages.sh)
 
 pause(){
   echo ""
