@@ -123,6 +123,7 @@ compile(){
 
 make_install() {
   echo "$MESSAGE_MAKE_INSTALL"
+  
   # install the binaries to /usr/local/bin
   cd ~/syscoin
   sudo make install
@@ -431,6 +432,7 @@ create_and_configure_syscoin_user(){
   grep -q "alias syscoin-cli" ~/.bashrc || echo "alias syscoin-cli='syscli'" >> ~/.bashrc
   grep -q "sysd\(\)" ~/.bashrc || echo "sysd() { sudo su -c \"syscoind \$*\" syscoin; }" >> ~/.bashrc
   grep -q "alias syscoind" ~/.bashrc || echo "alias syscoind='sysd'" >> ~/.bashrc
+  grep -q "sysmasternode\(\)" ~/.bashrc || echo "sysmasternode() { bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script-mainnet.sh); }" >> ~/.bashrc
 
   echo "$SYSCOIN_CONF" > ~/syscoin.conf
   if [ ! "$IS_MAINNET" = "" ] && [ ! "$IS_MAINNET" = "y" ] && [ ! "$IS_MAINNET" = "Y" ]; then
