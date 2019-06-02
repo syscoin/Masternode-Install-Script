@@ -6,6 +6,14 @@ if [ "$(sudo id -u)" != "0" ]; then
     exit 1
 fi
 
+#Function detect_ubuntu
+ if [[ $(lsb_release -d) == *18.04* ]]; then
+   UBUNTU_VERSION=18
+else
+   echo -e "You are not running Ubuntu 18.04, Installation is cancelled. Script requires 18.04"
+   exit 1
+fi
+
 HBAR="---------------------------------------------------------------------------------------"
 
 # import messages
