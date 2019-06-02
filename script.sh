@@ -209,7 +209,7 @@ configure_sentinel(){
 
   # setup cron for syscoin user
   sudo crontab -r -u syscoin
-  sudo crontab -l -u syscoin | grep sentinel-ping || echo "*/10 * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
+  sudo crontab -l -u syscoin | grep sentinel-ping || echo "*/5 * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
   clear
 }
 
@@ -314,7 +314,7 @@ echo "Before starting script ensure you have: "
 echo ""
 echo "  - Sent 100,000SYS to your masternode address"
 echo "  - Run 'masternode genkey' and 'masternode outputs' and recorded the outputs" 
-echo "  - Added masternode config file ('Tools>Open Masternode Config' in Syscoin-Qt) "
+echo "  - Added masternode config file"
 echo "    - addressAlias vpsIp:8369 masternodePrivateKey transactionId outputIndex"
 echo "    - EXAMPLE: mn1 ${RESOLVED_ADDRESS}:8369 ctk9ekf0m3049fm930jf034jgwjfk zkjfklgjlkj3rigj3io4jgklsjgklsjgklsdj 0"
 echo "  - Restarted Syscoin-Qt"
