@@ -411,6 +411,7 @@ After=network.target iptables.service firewalld.service
 [Service]
 Type=forking
 User=syscoin
+WorkingDirectory=/home/syscoin
 ExecStart=/usr/local/bin/syscoind
 ExecStop=/usr/local/bin/syscoin-cli stop && sleep 20 && /usr/bin/killall syscoind
 ExecReload=/usr/local/bin/syscoin-cli stop && sleep 20 && /usr/local/bin/syscoind
