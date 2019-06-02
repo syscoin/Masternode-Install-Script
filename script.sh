@@ -63,6 +63,7 @@ maybe_create_swap_file(){
     echo '/swap.img none swap sw 0 0' | sudo tee --append /etc/fstab > /dev/null
     sudo mount -a
     echo "Swapfile created."
+    clear
   fi
 }
 
