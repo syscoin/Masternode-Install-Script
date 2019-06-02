@@ -2,6 +2,29 @@
 
 ---
 
+## VPS Providers
+
+There are many VPS service providers that offer and exceed the hardware requirements, as such it is recommended that you shop around and do your own homework on various potential providers. Note the following is a list of just some examples and should not be interpreted as recommendations or endorsement.
+
+- UK2.net
+- IONOS.co.uk
+- InterServer.net
+- OVH.co.uk
+- KimSufi.com
+- mVPS.net
+- VPS-Mart.com
+- Hostinger.com
+- BudgetVM.com
+- Virtono.com
+- LeaseWeb.com
+- HomeAtCloud.com
+- IdeaStack.com
+- SSDNodes.com
+- SimplyHosting.com
+- RAMNode.com
+- Time4VPS.com
+
+
 ###### To start:
 1. Create your VPS with following configs:
     * 64-bit CPU — 2 Cores (4 preferred)
@@ -11,7 +34,6 @@
     * Linux OS — Ubuntu 18.04.1 LTS (Bionic Beaver)
     * (Sys4 will not compile on earlier versions as C++17 compiler is required)
     * 80gb Disk Space (100gb+ SSD preferred)
-    * Port open for Syscoin (default: 8369) and Geth (default: 30303)
 
 ---
 
