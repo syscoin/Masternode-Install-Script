@@ -308,7 +308,7 @@ RESOLVED_ADDRESS=$(curl -s ipinfo.io/ip)
 
 echo "$MESSAGE_CONFIGURE"
 echo ""
-echo "This script has been tested on Ubuntu 16.04 LTS x64."
+echo "This script has been tested on Ubuntu 18.04 LTS x64."
 echo ""
 echo "Before starting script ensure you have: "
 echo ""
@@ -399,7 +399,6 @@ rpcpassword=$RPC_PASSWORD
 rpcallowip=127.0.0.1
 rpcbind=127.0.0.1
 rpcport=8370
-gethtestnet=1
 # syscoind config
 listen=1
 server=1
@@ -410,18 +409,15 @@ masternode=1
 masternodeprivkey=$MASTERNODE_PRIVATE_KEY
 externalip=$EXTERNAL_ADDRESS
 port=$MASTERNODE_PORT
-addnode=54.203.169.179
-addnode=54.190.239.153
 EOF
 )
 
 # testnet config
 SYSCOIN_TESTNET_CONF=$(cat <<EOF
 # testnet config
-testnet=1
-addnode=40.121.201.195
-addnode=40.71.212.2
-addnode=40.76.48.206
+gethtestnet=1
+addnode=54.203.169.179
+addnode=54.190.239.153
 EOF
 )
 
