@@ -1,5 +1,6 @@
 # SYSCOIN 4 MASTERNODE SCRIPT
-<img src="https://imgur.com/UegKPtD">
+
+![Sycoin Logo Scifi](https://github.com/bigpoppa-sys/sysmn/blob/master/img/syscoin-logo.jpg)
 
 ---
 
