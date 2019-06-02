@@ -2,6 +2,16 @@
 
 ---
 
+## MASTERNODE REQUIREMENTS
+1. 100,000.00 SYSCOIN
+2. VPS with following;
+   * 64-bit CPU — 2 Cores (4 preferred)
+   * 4gb RAM (real) minimum (8gb RAM preferred)
+   * 4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap
+   * VM or OpenVZ (KVM preferred)
+   * Linux OS — Ubuntu 18.04.1 LTS (Bionic Beaver)
+   * 80gb Disk Space (100gb+ SSD preferred)
+
 ## VPS Providers
 
 There are many VPS service providers that offer and exceed the hardware requirements, as such it is recommended that you shop around and do your own homework on various potential providers. Note the following is a list of just some examples and should not be interpreted as recommendations or endorsement.
@@ -24,16 +34,16 @@ There are many VPS service providers that offer and exceed the hardware requirem
 - RAMNode.com
 - Time4VPS.com
 
+## MASTERNODE HELP
+If you require more help, jump into the [Syscoin Discord](https://discord.gg/RkK2AXD) and our community will be more than happy to help you out!\
+
+You can also checkout [Sysnode.info](https://sysnode.info). This website has an array of tools such as Masternode Stats, Monitoring and keeping up to date with current news with Syscoin.
+
+---
 
 ###### To start:
-1. Create your VPS with following configs:
-    * 64-bit CPU — 2 Cores (4 preferred)
-    * 4gb RAM (real) minimum (8gb RAM preferred)
-    * 4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap
-    * VM or OpenVZ (KVM preferred)
-    * Linux OS — Ubuntu 18.04.1 LTS (Bionic Beaver)
-    * (Sys4 will not compile on earlier versions as C++17 compiler is required)
-    * 80gb Disk Space (100gb+ SSD preferred)
+1.
+    
 
 ---
 
