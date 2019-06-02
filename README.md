@@ -37,15 +37,70 @@ There are many VPS service providers that offer and exceed the hardware requirem
 - [Time4VPS.com](https://Time4VPS.com)
 
 ## MASTERNODE HELP
-If you require more help, jump into the [Syscoin Discord](https://discord.gg/RkK2AXD) and our community will be more than happy to help you out!\
+If you require more help, jump into the [Syscoin Discord](https://discord.gg/RkK2AXD) and our community will be more than happy to help you out!
 
 You can also checkout [Sysnode.info](https://sysnode.info). This website has an array of tools such as Masternode Stats, Monitoring and keeping up to date with current news with Syscoin.
 
 ---
 
-###### To start:
-1.
-    
+## INSTALLATION
+
+##### 1. DUMP WALLET
+
+If you are upgrading your wallet from Syscoin 3.x to Syscoin 4.x you MUST run dumpwallet ```"/full/path/to/dump.txt"``` and then importwallet ```"/full/path/to/dump.txt"```. You will likely want to delete ```“/full/path/to/dump.txt”``` after this process as it contains unprotected private keys.
+
+```diff 
+- WARNING: Your wallet dump file contains unprotected private keys. 
+- Please delete it after completing this step!
+```
+
+##### 2. PREPARE QT & SEND 100,000 SYS COLLATERAL
+
+- To stake your masternode you will need to provide exactly 100,000 SYS in your masternode address. Use [Syscoin Core Qt](https://github.com/syscoin/syscoin/releases) for your system to process this transaction.
+
+- To get started open Syscoin Core Qt on your computer and from the menu select “Settings > Options” on Windows or “Syscoin Core > Preferences..” on a Mac. Select the “Wallet” tab and click the checkbox to “Enable coin control features” and “Show Masternodes Tab”. Click the “Ok” button to save your settings, close Syscoin Core Qt then re-open it to view the new options, then wait for the blockchain to fully sync with the network.
+
+- Once your local Syscoin Core Qt has fully synced select “Tools > Debug” and enter ```masternode genkey``` to generate your masternode private key. Copy this value as you will need it later, it will look similar to the following:
+```
+masternode genkey
+7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc
+```
+
+- Next type ```getnewaddress <LABEL> legacy``` (replacing <LABEL> with a name eg. mn1), to generate an address to use for your 100k collateral. Masternodes require legacy addresses, and will not work with the new Bech32 addresses that start with sys. Copy down this address as well as you will need to send your collateral to it in the next step.
+
+- If you are configuring multiple masternodes you will need to create a unique masternode private key and unique collateral address for each masternode using the steps above. Once the address is created for each masternode send a collateral transaction of exactly 100,000SYS to the address for each masternode using the next steps.
+
+```diff
+- WARNING: If you use the same address for multiple masternodes your reward payouts cannot be completed.
+```
+
+- Use Coin Control to ensure that you send your collateral from the correct address. Go to “Send” and then “Inputs” to select the input that you would like to send from. In the example below using tSYS, the “Main” input will be selected. Click “Ok” to return to the “Send” screen.
+
+- Next enter your masternode collateral address from the previous step into the “Pay To” field. Enter “100,000” exactly into the “Amount” field and do NOT subtract fees from the amount as it will reduce your collateral total.
+
+- Press “Send” to send your Syscoin to your masternode collateral address. You will need to wait 1 block – approximately 1 minute – for the transaction to confirm.
+
+- Next you will need to get the transaction id for the collateral by selecting the “Transactions” tab to see the 100,000SYS sent to yourself. Right click this transaction to view the id, and copy it down as well for later use.
+
+- In Syscoin Core Qt again open the “Tools > Debug” menu and enter masternode outputs. You will get a long string that is a hash of the transaction id from the previous step followed by a “0” or “1” to indicate the output index. The result should resemble the following:
+
+```
+masternode outputs
+}
+“06e38868bb8f9958e34d5155437d009b72dff33fc87fd42e51c0f74fdb” : “0”,
+}
+```
+
+- From the Syscoin-Qt menu select “Tools > Open Masternode Configuration File”. You will need to enter your masternode information using a text editor in the following format and use the public IP address of your server not your local computer. Make sure that the line does not start with a # as this will comment out the line! If you don’t see your masternode listed in the “Masternode” tab please double check this configuration.
+
+```
+masternode.conf
+# Masternode config file
+# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index
+mn1 123.123.123.123:8369 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc 06e38868bb8f9958e34d5155437d009b72dff33fc87fd42e51c0f74fdb 0
+```
+
+- Save this file and close Syscoin-Qt.
 
 ---
 
