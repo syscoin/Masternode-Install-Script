@@ -91,7 +91,7 @@ masternode outputs
 }
 ```
 
-- From the Syscoin-Qt menu select “Tools > Open Masternode Configuration File”. You will need to enter your masternode information using a text editor in the following format and use the public IP address of your server not your local computer. Make sure that the line does not start with a # as this will comment out the line! If you don’t see your masternode listed in the “Masternode” tab please double check this configuration.
+- From the Syscoin-Qt menu select “Tools > Open Masternode Configuration File”. You will need to enter your masternode information using a text editor in the following format and use the public IP address of your server not your local computer. Make sure that the line does not start with a # as this will comment out the line! 
 
 ```
 masternode.conf
@@ -100,7 +100,56 @@ masternode.conf
 mn1 123.123.123.123:8369 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc 06e38868bb8f9958e34d5155437d009b72dff33fc87fd42e51c0f74fdb 0
 ```
 
-- Save this file and close Syscoin-Qt.
+- Save this file then close and restart Syscoin-Qt. If you don’t see your masternode listed in the “Masternode” tab please double check the above configuration.
+
+##### 3. CONFIGURE MASTERNODE ON VPS
+
+- Finally we are ready to work on your server. Connect to your VPS via SSH (Putty) and enter the following command to start the automated install:
+
+```
+bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh)
+```
+
+- Default values are found in brackets and pressing enter will selected the [default] value. For entries with a [Y/n] the capital letter is the default. Enter [Y] to choose “yes” or [N] to choose “no”. Likely the only value you will need to enter is your masternode private key.
+
+```
+Syscoin Core Github Branch [master]: 
+Masternode Private Key []: 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc
+External IP Address [123.123.123.123]: 
+Masternode Port [8369]: 
+ 
+Press any key to continue or Ctrl+C to exit...
+```
+
+- Once the build process and configuration have completed, to access the syscoind and syscoin-cli executables via the new syscoin user type the below into cmd; 
+
+```
+source ~/.bashrc 
+```
+
+##### 4. ENABLE MASTERNODE
+
+- Back on your local computer restart Syscoin Core Qt and wait for it to sync up to the network. 
+   - Choose the “Masternodes” tab, select your masternode,
+   - Click “Initialize”.
+
+Only click this button once and if your “Status” ever changes it’s recommended to confer with the #masternodes Discord Channel before restarting your node. If you restart you will need to re-qualify for rewards and won’t receive any rewards during this time.
+
+---
+
+**Eligibility for Rewards**
+
+Keep in mind that your masternode will not immediately be eligible for rewards. The eligibility period is determined by the formula [number of masternodes] * 2.6 * 60 seconds.
+
+Note, if you restart your masternode by pressing “Initialize” in Qt this counter will reset and you will not receive rewards until your masternode is eligible again.
+
+---
+
+**Summary**
+
+This script installs the necessary dependencies to build the Syscoin Core from source. It creates a user named “syscoin” and uses a systemd service to start the syscoind process as the “syscoin” user, and it set to start on boot after the necessary networking services have started.
+
+Updates and reconfigurations can be performed by entering the command **sysmasternode** or the initial auto install command bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh).
 
 ---
 
@@ -171,3 +220,10 @@ syscli masternode status
 ```
 sudo su - syscoin
 ```
+
+---
+
+Special thanks to demesm and doublesharp for the initial script. Shoutouts to bitje, johnp and the Syscoin team for upgrading and working out minor issues to get it running on SYS4.
+
+"Spread Love It's The Brooklyn Way"
+- BigPoppa
