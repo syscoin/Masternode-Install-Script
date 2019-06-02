@@ -383,7 +383,7 @@ masternode_private_key(){
 
 masternode_private_key
 
-# read -e -p "Configure for mainnet? [Y/n]: " IS_MAINNET
+read -e -p "Configure for mainnet? [Y/n]: " IS_MAINNET
 
 #Generating Random Passwords
 RPC_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
