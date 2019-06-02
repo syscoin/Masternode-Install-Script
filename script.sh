@@ -59,7 +59,7 @@ maybe_prompt_for_swap_file(){
       echo "You need to upgrade your server to 4 GB RAM."
        exit 1
   fi
-  if [ $MEMORY_TOTAL -lt 7978 ]; then
+  if [ $MEMORY_TOTAL -lt 7800 ]; then
       CREATE_SWAP="Y";
   fi
 }
