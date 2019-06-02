@@ -1,4 +1,5 @@
 # SYSCOIN 4 MASTERNODE SCRIPT
+<img src="https://imgur.com/UegKPtD">
 
 ---
 
