@@ -18,7 +18,9 @@ pause(){
 
 do_exit(){
   echo ""
-  echo "Install script for Syscoin 4 Masternodes"
+  echo "======================================================================================"
+  echo "             Install script for Syscoin 4 Masternodes"
+  echo "======================================================================================"
   echo ""
   echo "Big thanks to demesm & doublesharp for the original script"
   echo ""
@@ -26,6 +28,8 @@ do_exit(){
   echo ""
   echo "Spread Love It's The Brooklyn Way!"
   echo "-BigPoppa"
+  echo ""
+  echo ""
   exit 0
 }
 
@@ -546,17 +550,23 @@ sudo su -c "sentinel-ping" syscoin
 echo ""
 echo "Masternode setup complete!"
 echo ""
+echo "======================================================================================"
 echo "Please run the following command to access syscoin-cli from this session or re-login."
+echo "======================================================================================"
 echo ""
 echo "  source ~/.bashrc"
 echo ""
+echo "======================================================================================"
 echo "You can run syscoin-cli commands as the syscoin user: "
+echo "======================================================================================"
 echo ""
 echo "  syscli getblockchaininfo"
 echo "  syscli masternode status"
 echo ""
+echo "======================================================================================"
 echo "To update this masternode just type:"
+echo "======================================================================================"
 echo ""
-echo "  sysmasternode"
+echo "        sysmasternode"
 
 do_exit
