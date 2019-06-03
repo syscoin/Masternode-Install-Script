@@ -401,10 +401,6 @@ masternode=1
 masternodeprivkey=$MASTERNODE_PRIVATE_KEY
 externalip=$EXTERNAL_ADDRESS
 port=$MASTERNODE_PORT
-# testnet config
-gethtestnet=1
-addnode=54.203.169.179
-addnode=54.190.239.153
 EOF
 )
 
