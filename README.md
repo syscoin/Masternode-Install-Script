@@ -60,9 +60,7 @@ If you are upgrading your wallet from Syscoin 3.x to Syscoin 4.x you MUST run du
 
 - To stake your masternode you will need to provide exactly 100,000 SYS in your masternode address. Use [Syscoin Core Qt](https://github.com/syscoin/syscoin/releases) for your system to process this transaction.
 
-- To get started open Syscoin Core Qt on your computer and from the menu select “Settings > Options” on Windows or “Syscoin Core > Preferences..” on a Mac. Select the “Wallet” tab and click the checkbox to “Enable coin control features” and “Show Masternodes Tab”. Click the “Ok” button to save your settings, close Syscoin Core Qt then re-open it to view the new options, then wait for the blockchain to fully sync with the network.
-
-- Once your local Syscoin Core Qt has fully synced select “Tools > Debug” and enter ```masternode genkey``` to generate your masternode private key. Copy this value as you will need it later, it will look similar to the following:
+- Once your local Syscoin Core Qt has fully synced, select “Window > Console” and enter ```masternode genkey``` to generate your masternode private key. Copy this value as you will need it later, it will look similar to the following:
 ```
 masternode genkey
 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc
@@ -76,7 +74,7 @@ masternode genkey
 - WARNING: If you use the same address for multiple masternodes your reward payouts cannot be completed.
 ```
 
-- Use Coin Control to ensure that you send your collateral from the correct address. Go to “Send” and then “Inputs” to select the input that you would like to send from. In the example below using tSYS, the “Main” input will be selected. Click “Ok” to return to the “Send” screen.
+- Use Coin Control to ensure that you send your collateral from the correct address. Go to “Send” and then “Inputs” to select the input that you would like to send from.
 
 - Next enter your masternode collateral address from the previous step into the “Pay To” field. Enter “100,000” exactly into the “Amount” field and do NOT subtract fees from the amount as it will reduce your collateral total.
 
@@ -84,7 +82,7 @@ masternode genkey
 
 - Next you will need to get the transaction id for the collateral by selecting the “Transactions” tab to see the 100,000SYS sent to yourself. Right click this transaction to view the id, and copy it down as well for later use.
 
-- In Syscoin Core Qt again open the “Tools > Debug” menu and enter masternode outputs. You will get a long string that is a hash of the transaction id from the previous step followed by a “0” or “1” to indicate the output index. The result should resemble the following:
+- In Syscoin Core Qt again open the “Window > Console” menu and enter masternode outputs. You will get a long string that is a hash of the transaction id from the previous step followed by a “0” or “1” to indicate the output index. The result should resemble the following:
 
 ```
 masternode outputs
