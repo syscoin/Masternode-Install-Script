@@ -115,7 +115,7 @@ mn1 123.123.123.123:8369 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc 06e3
 
 ##### 3. CONFIGURE MASTERNODE ON VPS
 
-- Finally we are ready to work on your server. Connect to your VPS via SSH (Putty) and enter the following command to start the automated install:
+- Finally we are ready to work on your server. Connect to your VPS as **root** via SSH (Putty) and enter the following command to start the automated install:
 
 ```
 bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh)
