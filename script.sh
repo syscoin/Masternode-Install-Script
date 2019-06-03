@@ -406,6 +406,22 @@ EOF
 
 # testnet config
 SYSCOIN_TESTNET_CONF=$(cat <<EOF
+# rpc config
+rpcuser=user
+rpcpassword=$RPC_PASSWORD
+rpcallowip=127.0.0.1
+rpcbind=127.0.0.1
+rpcport=8370
+# syscoind config
+listen=1
+server=1
+daemon=1
+maxconnections=24
+# masternode config
+masternode=1
+masternodeprivkey=$MASTERNODE_PRIVATE_KEY
+externalip=$EXTERNAL_ADDRESS
+port=$MASTERNODE_PORT
 # testnet config
 gethtestnet=1
 addnode=54.203.169.179
