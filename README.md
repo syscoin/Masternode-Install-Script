@@ -37,9 +37,11 @@ There are many VPS service providers that offer and exceed the hardware requirem
 - [Time4VPS.com](https://Time4VPS.com)
 
 ## MASTERNODE HELP
-If you require more help, jump into the [Syscoin Discord](https://discord.gg/RkK2AXD) and our community will be more than happy to help you out!
+[SysHub](https://syshub.org): Register your masternodes with Syshub. You can also create Proposals through the generator for Governance and Vote on upcoming Proposals.
 
-You can also checkout [Sysnode.info](https://sysnode.info). This website has an array of tools such as Masternode Stats, Monitoring and keeping up to date with current news with Syscoin.
+[Syscoin Discord](https://discord.gg/RkK2AXD): If you require more help, jump into the Syscoin Discord and our community will be more than happy to help you out!
+
+[Sysnode.info](https://sysnode.info): This website has an array of tools such as Masternode Stats, Monitoring and keeping up to date with current news with Syscoin.
 
 ---
 
@@ -150,6 +152,14 @@ Note, if you restart your masternode by pressing “Initialize” in Qt this cou
 This script installs the necessary dependencies to build the Syscoin Core from source. It creates a user named “syscoin” and uses a systemd service to start the syscoind process as the “syscoin” user, and it set to start on boot after the necessary networking services have started.
 
 Updates and reconfigurations can be performed by entering the command **sysmasternode** or the initial auto install command bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh).
+
+---
+
+**SYSHUB**
+
+[SysHub](https://syshub.org)
+
+Now it is time to head over to SysHub and register your masternode. You can also create Proposals through the generator for Governance and Vote on upcoming Proposals.
 
 ---
 
