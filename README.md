@@ -151,7 +151,7 @@ Note, if you restart your masternode by pressing “Initialize” in Qt this cou
 
 This script installs the necessary dependencies to build the Syscoin Core from source. It creates a user named “syscoin” and uses a systemd service to start the syscoind process as the “syscoin” user, and it set to start on boot after the necessary networking services have started.
 
-Updates and reconfigurations can be performed by entering the command **sysmasternode** or the initial auto install command bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh).
+Updates and reconfigurations can be performed by entering the command **sysmasternode** or the initial auto install command ```bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh)```
 
 ---
 
