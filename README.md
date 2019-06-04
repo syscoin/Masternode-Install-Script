@@ -67,7 +67,7 @@ If you are upgrading your wallet from Syscoin 3.x to Syscoin 4.x you MUST run du
 masternode genkey
 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc
 ```
-- You will need to create a new HD address. Do not reuse a Sys3 address!!
+- You will need to create a new HD address. Do not reuse a SYS3 address!!
 - Next type ```getnewaddress <LABEL> legacy``` (replacing **LABEL** with a name eg. mn1), to generate an address to use for your 100k collateral. Masternodes require legacy addresses, and will not work with the new Bech32 addresses that start with sys. Copy down this address as well as you will need to send your collateral to it in the next step.
 
 - If you are configuring multiple masternodes you will need to create a unique masternode private key and unique collateral address for each masternode using the steps above. Once the address is created for each masternode send a collateral transaction of exactly 100,000SYS to the address for each masternode using the next steps.
