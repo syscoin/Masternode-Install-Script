@@ -93,7 +93,7 @@ masternode outputs
 }
 ```
 
-- Next we will have to create the masternode.conf file.
+- Next we will have to open the masternode.conf file.
 ```Go to your syscoin folder;
 
 For WIN
@@ -104,7 +104,6 @@ For MAC
  CMD + Shift + G
  ~/Library/Application Support/Syscoin
  ```
-- Create a text file, open it and save it as ```masternode.conf```. Make sure you toggle to **all files**.
 - You will need to enter your masternode information using a text editor in the following format and use the public IP address of your server not your local computer. Make sure that the line does not start with a # as this will comment out the line! 
 
 ```
