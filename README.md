@@ -13,6 +13,8 @@
    * VM or OpenVZ (KVM preferred)
    * Linux OS — Ubuntu 18.04.1 LTS (Bionic Beaver)
    * 80gb Disk Space (100gb+ SSD preferred)
+3. Static IP
+4. A legacy address, created via ```getnewaddress **label** legacy```. Creating a Bech32 address that starts with **sys** is not supported for Masternodes. 
 
 ## VPS Providers
 
