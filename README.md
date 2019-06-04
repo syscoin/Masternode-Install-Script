@@ -1,6 +1,6 @@
 # SYSCOIN 4 MASTERNODE SCRIPT
 
-![Sycoin Logo Scifi](https://github.com/bigpoppa-sys/sysmn/blob/master/img/syscoin-logo.jpg)
+![Sycoin Logo Scifi](https://github.com/syscoin/Masternode-Install-Script/blob/master/img/syscoin-logo.jpg)
 
 ---
 
@@ -120,7 +120,7 @@ mn1 123.123.123.123:8369 7ra1rhngvNkhkiFE8STrmvH3LvYTCzLyRFHFsZvrJUBV6ZmWnc 06e3
 - Finally we are ready to work on your server. Connect to your VPS as **root** via SSH (Putty) and enter the following command to start the automated install:
 
 ```
-bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh)
+bash <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-install-script/master/script.sh)
 ```
 
 - Default values are found in brackets and pressing enter will selected the [default] value. For entries with a [Y/n] the capital letter is the default. Enter [Y] to choose “yes” or [N] to choose “no”. Likely the only value you will need to enter is your masternode private key.
@@ -162,7 +162,7 @@ Note, if you restart your masternode by pressing “Initialize” in Qt this cou
 
 This script installs the necessary dependencies to build the Syscoin Core from source. It creates a user named “syscoin” and uses a systemd service to start the syscoind process as the “syscoin” user, and it set to start on boot after the necessary networking services have started.
 
-Updates and reconfigurations can be performed by entering the command **sysmasternode** or the initial auto install command ```bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/sysmn/master/script.sh)```
+Updates and reconfigurations can be performed by entering the command **sysmasternode** or the initial auto install command ```bash <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-install-script/master/script.sh)```
 
 ---
 
