@@ -58,7 +58,7 @@ If you are upgrading your wallet from Syscoin 3.x to Syscoin 4.x you MUST run du
 - Please delete it after completing this step!
 ```
 
-##### 2. PREPARE QT & SEND 100,000 SYS COLLATERAL
+##### 2. PREPARE QT & SEND 100,000 SYS COLLATERAL - Remember, Masternodes require LEGACY ADDRESSES
 
 - To stake your masternode you will need to provide exactly 100,000 SYS in your masternode address. Use [Syscoin Core Qt](https://github.com/syscoin/syscoin/releases) for your system to process this transaction.
 
