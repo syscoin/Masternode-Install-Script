@@ -274,7 +274,7 @@ EOF
 # syscoind.service config
 SENTINEL_PING=$(cat <<EOF
 #!/bin/bash
-~/sentinel/venv/bin/python ~/sentinel/bin/sentinel.py 2>&1 >> ~/sentinel/sentinel-cron.log
+/home/syscoin/sentinel/venv/bin/python /home/syscoin/sentinel/bin/sentinel.py 2>&1 >> /home/syscoin/sentinel/sentinel-cron.log
 EOF
 )
 
