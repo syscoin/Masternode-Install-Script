@@ -90,6 +90,13 @@ install_dependencies(){
   clear
 }
 
+make_clean(){
+  echo "Running Clean Up"
+  sudo make uninstall
+  sudo make clean
+  clear
+}
+
 git_clone_repository(){
   echo "$MESSAGE_CLONING"
   cd
@@ -221,6 +228,7 @@ stop_syscoind(){
 upgrade() {
   syscoin_branch      # ask which branch to use
   clear
+  make_clean
   install_dependencies # make sure we have the latest deps
   update_system       # update all the system libraries
   git_checkout_branch # check out our branch
