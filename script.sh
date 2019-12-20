@@ -92,6 +92,7 @@ install_dependencies(){
 
 make_clean(){
   echo "Running Clean Up"
+  cd ~/syscoin
   sudo make uninstall
   sudo make clean
   clear
