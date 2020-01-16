@@ -166,7 +166,7 @@ install_sentinel(){
   else
     cd sentinel
     git fetch
-    git checkout sys4 --quiet
+    git checkout master --quiet
     git pull
   fi
   clear
@@ -246,6 +246,8 @@ upgrade() {
     install_virtualenv
     configure_sentinel
   fi
+  
+  create_systemd_syscoind_service
 
   start_syscoind      # start syscoind back up
   
@@ -433,7 +435,7 @@ Type=forking
 User=syscoin
 ExecStart=/usr/local/bin/syscoind
 ExecStop=/usr/local/bin/syscoin-cli stop && sleep 20 && /usr/bin/killall syscoind
-ExecReload=/usr/local/bin/syscoin-cli stop && sleep 20 && /usr/local/bin/syscoind
+ExecReload=/usr/local/bin/syscoin-cli stop && sleep 20 && /usr/local/bin/syscoind -reindex
  
 [Install]
 WantedBy=multi-user.target
