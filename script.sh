@@ -405,7 +405,10 @@ install_ufw(){
 
 get_masternode_status(){
   echo ""
+  echo ""
   echo "Head to QT and register your Masternode then come back to check."
+  echo ""
+  echo ""
   sudo su -c "syscoin-cli masternode_status" syscoin
   echo ""
   read -e -p "Check again? [Y/n]: " CHECK_AGAIN
