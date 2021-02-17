@@ -15,19 +15,19 @@ KVM or OpenVZ (KVM preferred)
 
 ##### CONFIGURE MASTERNODE ON VPS
 
-- First head to QT and generate your BLS keys and copy them down
+1. First head to QT and generate your BLS keys and copy them down
 
 ```
 bls_generate
 ```
 
-- Connect to your VPS as **root** via SSH (Putty) and enter the following command to start the automated install:
+2. Connect to your VPS as **root** via SSH (Putty) and enter the following command to start the automated install:
 
 ```
 bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/Masternode-Install-Script/master/script.sh)
 ```
 
-Follow below;
+3. Follow below;
 
 ```
 Syscoin Core Github Tag [master]: enter the latest tag for testnet eg. 4.2.0rc7
@@ -39,13 +39,13 @@ Configure for mainnet [Y/n]: type "n" and press enter
 Press any key to continue or Ctrl+C to exit...
 ```
 
-- Once the build process and configuration have completed, to access the syscoind and syscoin-cli executables via the new syscoin user type the below into cmd; 
+4. Once the build process and configuration have completed, to access the syscoind and syscoin-cli executables via the new syscoin user type the below into cmd; 
 
 ```
 source ~/.bashrc 
 ```
 
-Follow Johnp's guide for the rest to register your masternode in QT;
+5. Follow Johnp's guide for the rest to register your masternode in QT;
 
 https://bittyjohn1954.medium.com/syscoin-4-2-testnet-setup-guide-assuming-a-clean-install-63e8b2772600
 
