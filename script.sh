@@ -396,8 +396,8 @@ install_ufw(){
   sudo ufw default deny incoming
   sudo ufw default allow outgoing
   sudo ufw allow ssh
-  #change 8369
-  sudo ufw allow 18369/tcp 
+  sudo ufw allow 18369/tcp
+  sudo ufw allow 8369/tcp 
   sudo ufw allow 30303/tcp
   yes | sudo ufw enable
   clear
@@ -405,8 +405,8 @@ install_ufw(){
 
 get_masternode_status(){
   echo ""
-  sudo su -c "syscoin-cli mnsync status" syscoin && \
-  sudo su -c "syscoin-cli masternode status" syscoin
+  echo "Head to QT and register your Masternode then come back to check."
+  sudo su -c "syscoin-cli masternode_status" syscoin
   echo ""
   read -e -p "Check again? [Y/n]: " CHECK_AGAIN
   if [ "$CHECK_AGAIN" = "" ] || [ "$CHECK_AGAIN" = "y" ] || [ "$CHECK_AGAIN" = "Y" ]; then
@@ -449,18 +449,5 @@ echo "Please run the following command to access syscoin-cli from this session o
 echo "======================================================================================"
 echo ""
 echo "  source ~/.bashrc"
-echo ""
-echo "======================================================================================"
-echo "You can run syscoin-cli commands as the syscoin user: "
-echo "======================================================================================"
-echo ""
-echo "  syscli getblockchaininfo"
-echo "  syscli masternode status"
-echo ""
-echo "======================================================================================"
-echo "To update this masternode just type:"
-echo "======================================================================================"
-echo ""
-echo "        sysmasternode"
 
 do_exit
