@@ -227,7 +227,7 @@ DEFAULT_PORT=8369
 # syscoin.conf value defaults
 rpcuser="sycoinrpc"
 rpcpassword="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
-masternodeprivkey=""
+masternodeblskey=""
 externalip="$RESOLVED_ADDRESS"
 port="$DEFAULT_PORT"
 
@@ -273,7 +273,6 @@ masternode_bls_key(){
     fi
   fi
 }
-
 
 masternode_bls_key
 
