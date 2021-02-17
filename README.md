@@ -108,14 +108,14 @@ source ~/.bashrc
 ```
 syscoin-cli getblockchaininfo
 syscoin-cli mnsync status
-syscoin-cli masternode status
+syscoin-cli masternode_status
 ```
 
 ###### it is aliased to this shorter function 
 ```
 syscli getblockchaininfo
 syscli mnsync status
-syscli masternode status
+syscli masternode_status
 ```
 
 ###### if you really want to log in as the syscoin user
