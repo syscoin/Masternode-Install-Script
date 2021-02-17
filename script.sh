@@ -71,12 +71,19 @@ maybe_create_swap_file(){
   fi
 }
 
+syscoin_branch(){
+  read -e -p "Syscoin Core Github Branch [master]: " SYSCOIN_BRANCH
+  if [ "$SYSCOIN_BRANCH" = "" ]; then
+    SYSCOIN_BRANCH="master"
+  fi
+}
+
 install_binaries(){
   echo "$MESSAGE_DEPENDENCIES"
-  wget https://github.com/syscoin/syscoin/releases/download/v4.2.0rc7/syscoin-4.2.0rc7-x86_64-linux-gnu.tar.gz
-  tar xf syscoin-4.2.0rc7-x86_64-linux-gnu.tar.gz
-  sudo install -m 0755 -o root -g root -t /usr/local/bin syscoin-4.2.0rc7/bin/*
-  rm -r syscoin-4.2.0rc7
+  wget https://github.com/syscoin/syscoin/releases/download/v$SYSCOIN_BRANCH/syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
+  tar xf syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
+  sudo install -m 0755 -o root -g root -t /usr/local/bin syscoin-$SYSCOIN_BRANCH/bin/*
+  rm -r syscoin-$SYSCOIN_BRANCH
   clear
 }
 
@@ -150,6 +157,7 @@ stop_syscoind(){
 }
 
 upgrade() {
+  syscoin_branch
   stop_syscoind       # stop syscoind if it is running
   install_binaries # make sure we have the latest deps
   update_system       # update all the system libraries
@@ -221,6 +229,7 @@ if grep -q '^syscoin:' /etc/passwd; then
 fi
 clear
 
+SYSCOIN_BRANCH="master"
 RESOLVED_ADDRESS=$(curl -s ipinfo.io/ip)
 DEFAULT_PORT=8369
 
@@ -242,6 +251,9 @@ fi
 RPC_USER="$rpcuser"
 RPC_PASSWORD="$rpcpassword"
 MASTERNODE_PORT="$port"
+
+# ask which branch to use
+syscoin_branch
 
 if [ "$externalip" != "$RESOLVED_ADDRESS" ]; then
   echo ""
