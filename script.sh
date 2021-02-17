@@ -9,7 +9,7 @@ fi
 HBAR="---------------------------------------------------------------------------------------"
 
 # import messages
-source <(curl -sL https://raw.githubusercontent.com/syscoin/Masternode-Install-Script/master/messages.sh) 
+source <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/Masternode-Install-Script/master/messages.sh) 
 
 pause(){
   echo ""
