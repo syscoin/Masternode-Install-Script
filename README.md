@@ -5,13 +5,13 @@
 ---
 
 ## MASTERNODE REQUIREMENTS
-64-bit CPU — 2 Cores (4 preferred)
-4gb RAM (real) minimum (8gb RAM preferred)
-4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap
+* 64-bit CPU — 2 Cores (4 preferred)
+* 4gb RAM (real) minimum (8gb RAM preferred)
+* 4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap
 KVM or OpenVZ (KVM preferred)
-Linux OS — Minimum Ubuntu 18.04, LTS Ubuntu 20.04 LTS (Focal Fossa) preferred.
-80gb Disk Space (100gb+ SSD preferred).
-Port open for Syscoin (default: 18369) and Geth (default: 30303)
+* Linux OS — Minimum Ubuntu 18.04, LTS Ubuntu 20.04 LTS (Focal Fossa) preferred.
+* 80gb Disk Space (100gb+ SSD preferred).
+* Port open for Syscoin (default: 18369) and Geth (default: 30303)
 
 ##### CONFIGURE MASTERNODE ON VPS
 
@@ -46,6 +46,7 @@ source ~/.bashrc
 ```
 
 Follow Johnp's guide for the rest to register your masternode in QT;
+
 https://bittyjohn1954.medium.com/syscoin-4-2-testnet-setup-guide-assuming-a-clean-install-63e8b2772600
 
 
