@@ -227,7 +227,7 @@ DEFAULT_PORT=8369
 # syscoin.conf value defaults
 rpcuser="sycoinrpc"
 rpcpassword="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
-masternodeblskey=""
+masternodeblsprivkey=""
 externalip="$RESOLVED_ADDRESS"
 port="$DEFAULT_PORT"
 
@@ -265,8 +265,8 @@ fi
 masternode_bls_key(){
   read -e -p "Masternode BLS Key [$masternodeblskey]: " MASTERNODE_BLS_KEY
   if [ "$MASTERNODE_BLS_KEY" = "" ]; then
-    if [ "$masternodeblskey" != "" ]; then
-      MASTERNODE_BLS_KEY="$masternodeblskey"
+    if [ "$masternodeblsprivkey" != "" ]; then
+      MASTERNODE_BLS_KEY="$masternodeblsprivkey"
     else
       echo "You must enter a Masternode BLS Key!";
       masternode_bls_key
@@ -295,7 +295,7 @@ assetindex=1
 port=8369
 rpcport=8370
 rpcallowip=127.0.0.1
-masternodeblsblskey=$MASTERNODE_BLS_KEY
+masternodeblsprivkey=$MASTERNODE_BLS_KEY
 externalip=$EXTERNAL_ADDRESS
 EOF
 )
@@ -317,7 +317,7 @@ externalip=$EXTERNAL_ADDRESS
 gethtestnet=1
 addnode=54.190.239.153
 addnode=52.40.171.92
-masternodeblsblskey=$MASTERNODE_BLS_KEY
+masternodeblsprivkey=$MASTERNODE_BLS_KEY
 EOF
 )
 
