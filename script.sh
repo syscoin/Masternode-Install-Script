@@ -150,8 +150,6 @@ stop_syscoind(){
 }
 
 upgrade() {
-  syscoin_branch      # ask which branch to use
-  clear
   stop_syscoind       # stop syscoind if it is running
   install_binaries # make sure we have the latest deps
   update_system       # update all the system libraries
@@ -169,7 +167,6 @@ upgrade() {
   start_syscoind      # start syscoind back up
   
   echo "$MESSAGE_COMPLETE"
-  echo "Syscoin Core update complete using https://www.github.com/syscoin/syscoin/tree/${SYSCOIN_BRANCH}!"
   do_exit             # exit the script
 }
 
@@ -225,8 +222,6 @@ fi
 clear
 
 RESOLVED_ADDRESS=$(curl -s ipinfo.io/ip)
-
-SYSCOIN_BRANCH="master"
 DEFAULT_PORT=8369
 
 # syscoin.conf value defaults
@@ -247,9 +242,6 @@ fi
 RPC_USER="$rpcuser"
 RPC_PASSWORD="$rpcpassword"
 MASTERNODE_PORT="$port"
-
-# ask which branch to use
-syscoin_branch
 
 if [ "$externalip" != "$RESOLVED_ADDRESS" ]; then
   echo ""
