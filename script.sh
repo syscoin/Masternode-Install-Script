@@ -72,7 +72,7 @@ maybe_create_swap_file(){
 }
 
 syscoin_branch(){
-  read -e -p "Syscoin Core Github Branch [master]: " SYSCOIN_BRANCH
+  read -e -p "Syscoin Core Github Tag [master]: " SYSCOIN_BRANCH
   if [ "$SYSCOIN_BRANCH" = "" ]; then
     SYSCOIN_BRANCH="master"
   fi
