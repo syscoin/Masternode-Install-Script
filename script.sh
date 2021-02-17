@@ -421,6 +421,7 @@ get_masternode_status(){
   echo "Head to QT and register your Masternode then come back to check."
   echo ""
   echo ""
+  echo "Check explorer to make sure it is synced"
   sudo su -c "syscoin-cli getblockcount"
   echo ""
   echo ""
