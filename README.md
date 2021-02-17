@@ -43,10 +43,10 @@ Press any key to continue or Ctrl+C to exit...
 
 ```
 source ~/.bashrc 
-
 ```
 
-Follow Johnp's guide for the rest https://bittyjohn1954.medium.com/syscoin-4-2-testnet-setup-guide-assuming-a-clean-install-63e8b2772600
+Follow Johnp's guide for the rest to register your masternode in QT;
+https://bittyjohn1954.medium.com/syscoin-4-2-testnet-setup-guide-assuming-a-clean-install-63e8b2772600
 
 
 ## MASTERNODE COMMANDS
