@@ -37,7 +37,7 @@ bash <(curl -sL https://raw.githubusercontent.com/bigpoppa-sys/Masternode-Instal
 ```
 Syscoin Core Github Tag [master]: enter the latest tag for testnet eg. 4.2.0rc7
 External IP Address [123.123.123.123]: press Enter
-Masternode Port [18369]: press Enter
+Masternode Port [8369]: press Enter
 Masternode BLS Priv Key []: paste in you BLS secret key
 Configure for mainnet [Y/n]: type "n" and press enter
  
