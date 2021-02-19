@@ -139,7 +139,7 @@ configure_sentinel(){
 
   # setup cron for syscoin user
   sudo crontab -r -u syscoin
-  sudo crontab -l -u syscoin | grep sentinel-ping || echo "*/1 * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
+  sudo crontab -l -u syscoin | grep sentinel-ping || echo "* * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
   clear
 }
 
