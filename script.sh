@@ -405,10 +405,12 @@ install_fail2ban(){
 install_ufw(){
   echo "$MESSAGE_UFW"
   sudo apt install ufw python virtualenv git unzip pv -y
-  sudo ufw allow ssh
+  sudo ufw allow ssh/tcp
+  sudo ufw limit ssh/tcp
   sudo ufw allow 18369/tcp
   sudo ufw allow 8369/tcp 
   sudo ufw allow 30303/tcp
+  sudo ufw logging on
   yes | sudo ufw enable
   clear
 }
