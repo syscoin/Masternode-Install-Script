@@ -433,10 +433,6 @@ get_masternode_status(){
   fi
 }
 
-source_bash(){
-  source ~/.bashrc
-}
-
 # if there is <4gb and the user said yes to a swapfile...
 maybe_create_swap_file
 install_ufw
@@ -453,7 +449,6 @@ install_sentinel
 install_virtualenv
 configure_sentinel
 install_fail2ban
-source_bash
 clear
 # ping sentinel
 sudo su -c "sentinel-ping" syscoin
