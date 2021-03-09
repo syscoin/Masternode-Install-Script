@@ -404,14 +404,13 @@ install_fail2ban(){
 
 install_ufw(){
   echo "$MESSAGE_UFW"
-  sudo apt install ufw python virtualenv git unzip pv -y
-  sudo ufw default deny incoming
-  sudo ufw default allow outgoing
-  sudo ufw allow ssh
-  sudo ufw allow 18369/tcp
-  sudo ufw allow 8369/tcp 
-  sudo ufw allow 30303/tcp
-  yes | sudo ufw enable
+  apt install ufw python virtualenv git unzip pv -y
+  ufw allow ssh/tcp 
+  ufw limit ssh/tcp 
+  ufw allow 18369/tcp 
+  ufw allow 30303/tcp 
+  ufw logging on 
+  ufw enable
   clear
 }
 
@@ -435,6 +434,7 @@ get_masternode_status(){
 
 # if there is <4gb and the user said yes to a swapfile...
 maybe_create_swap_file
+install_ufw
 
 # prepare to build
 update_system
@@ -448,7 +448,6 @@ install_sentinel
 install_virtualenv
 configure_sentinel
 install_fail2ban
-install_ufw
 clear
 
 echo "$MESSAGE_COMPLETE"
