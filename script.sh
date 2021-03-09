@@ -433,6 +433,10 @@ get_masternode_status(){
   fi
 }
 
+source_bash(){
+  source ~/.bashrc
+}
+
 # if there is <4gb and the user said yes to a swapfile...
 maybe_create_swap_file
 install_ufw
@@ -449,7 +453,10 @@ install_sentinel
 install_virtualenv
 configure_sentinel
 install_fail2ban
+source_bash
 clear
+# ping sentinel
+sudo su -c "sentinel-ping" syscoin
 
 echo "$MESSAGE_COMPLETE"
 echo ""
@@ -457,16 +464,9 @@ echo "Your masternode configuration should now be completed and running as the s
 
 get_masternode_status
 
-# ping sentinel
-sudo su -c "sentinel-ping" syscoin
 
 echo ""
 echo "Masternode setup complete!"
 echo ""
-echo "======================================================================================"
-echo "Please run the following command to access syscoin-cli from this session or re-login."
-echo "======================================================================================"
-echo ""
-echo "  source ~/.bashrc"
 
 do_exit
