@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # Only run as a root user
 if [ "$(sudo id -u)" != "0" ]; then
