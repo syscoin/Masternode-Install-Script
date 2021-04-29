@@ -17,10 +17,13 @@ pause(){
 }
 
 do_exit(){
+  echo "$MESSAGE_COMPLETE"
   echo ""
-  echo "======================================================================================"
-  echo "             Install script for Syscoin LUX Masternodes"
-  echo "======================================================================================"
+  echo "Your masternode configuration should now be completed and running as the syscoin user."
+  echo ""
+  echo "Please run the following command"
+  echo "source ~/.bashrc"
+  echo ""
   echo ""
   echo "Big thanks to demesm & doublesharp for the original script"
   echo ""
@@ -434,12 +437,5 @@ install_fail2ban
 clear
 # ping sentinel
 sudo su -c "sentinel-ping" syscoin
-
-echo "$MESSAGE_COMPLETE"
-echo ""
-echo "Your masternode configuration should now be completed and running as the syscoin user."
-echo ""
-echo "Please run the following command"
-echo "source ~/.bashrc"
 
 do_exit
