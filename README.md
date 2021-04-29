@@ -86,7 +86,8 @@ If you are using a hosting service, they may provide you with their public key, 
 
 ```bls_generate```
 
-```{
+```
+{
   "secret": "1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7",
   "public": "05afc5f75d0a215951677703e41a108a67f2efb31110e392d988dbd4f9e8446a3336d59de1ff886ec0d3c65c822af2de"
 }
