@@ -4,7 +4,7 @@
 
 ---
 
-## Below are the minimum requirements for your VPS. Please do not try to compile without the minimum.
+## Must be installed on brand new VPS. Below are the minimum requirements for your VPS. Please do not try to compile without the minimum. 
 - 64-bit CPU — 2 Cores (4 preferred)
 - 4gb RAM (real) minimum (8gb RAM preferred)
 - 4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap
