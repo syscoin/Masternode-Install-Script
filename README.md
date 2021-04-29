@@ -101,10 +101,12 @@ Finally we are ready to work on your server. Connect to your VPS as root via SSH
 
 Default values are found in brackets and pressing enter will selected the [default] value. For entries with a [Y/n] the capital letter is the default. Enter [Y] to choose “yes” or [N] to choose “no”. Likely the only value you will need to enter is your Masternode BLS Secret key.
 
-``` Syscoin Core Github Branch [master]:
-Masternode BLS Secret Key []: 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7
+``` 
+Syscoin Core Github Branch [master]:
 External IP Address [123.123.123.123]: 
 Masternode Port [8369]: 
+Masternode BLS Secret Key []: 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7
+Configure for mainnet? [Y/n]: 
  
 Press any key to continue or Ctrl+C to exit...
 ```
