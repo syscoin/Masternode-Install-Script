@@ -99,7 +99,7 @@ install_sentinel(){
   else
     cd sentinel
     git fetch
-    git checkout dev-4.x --quiet
+    git checkout master --quiet
     git pull
   fi
   clear
