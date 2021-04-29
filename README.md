@@ -1,5 +1,7 @@
 # SYSCOIN LUX MASTERNODE SCRIPT
 
+![Sycoin Logo Scifi](https://github.com/syscoin/Masternode-Install-Script/blob/master/img/syscoin-logo.jpg)
+
 ---
 
 ###### Below are the minimum requirements for your VPS. Please do not try to compile without the minimum.**
@@ -12,6 +14,37 @@
 
 > If using an existing address with seniority you will have to manually ‘lock’ the collateral. Do this via Coin Control - right click your 100k tx and click "Lock Unspent". You do not need to make a new transaction. Doing so will lose your Seniority. If setting up a Masternode with a seniority address you can skip to generating your BLS KEYS.
 > 
+
+## VPS Providers
+
+There are many VPS service providers that offer and exceed the hardware requirements, as such it is recommended that you shop around and do your own homework on various potential providers. Note the following is a list of just some examples and should not be interpreted as recommendations or endorsement.
+
+- [UK2.net](https://UK2.net)
+- [IONOS.co.uk](https://IONOS.co.uk)
+- [InterServer.net](https://InterServer.net)
+- [OVH.co.uk](https://OVH.co.uk)
+- [KimSufi.com](https://KimSufi.com)
+- [mVPS.net](https://mVPS.net)
+- [VPS-Mart.com](https://VPS-Mart.com)
+- [Hostinger.com](https://Hostinger.com)
+- [BudgetVM.com](https://BudgetVM.com)
+- [Virtono.com](https://Virtono.com)
+- [LeaseWeb.com](https://LeaseWeb.com)
+- [HomeAtCloud.com](https://HomeAtCloud.com)
+- [IdeaStack.com](https://IdeaStack.com)
+- [SSDNodes.com](https://SSDNodes.com)
+- [SimplyHosting.com](https://SimplyHosting.com)
+- [RAMNode.com](https://RAMNode.com)
+- [Time4VPS.com](https://Time4VPS.com)
+
+## MASTERNODE HELP
+[SysHub](https://syshub.org): Register your masternodes with Syshub. You can also create Proposals through the generator for Governance and Vote on upcoming Proposals.
+
+[Syscoin Discord](https://discord.gg/RkK2AXD): If you require more help, jump into the Syscoin Discord and our community will be more than happy to help you out!
+
+[Sysnode.info](https://sysnode.info): This website has an array of tools such as Masternode Stats, Monitoring and keeping up to date with current news with Syscoin.
+
+---
 
 ## Prepare QT and Send 100k Syscoin
 
