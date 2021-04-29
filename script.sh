@@ -408,29 +408,11 @@ install_ufw(){
   sudo ufw allow ssh/tcp
   sudo ufw limit ssh/tcp
   sudo ufw allow 18369/tcp
-  sudo ufw allow 8369/tcp 
+  sudo ufw allow 8369/tcp
   sudo ufw allow 30303/tcp
   sudo ufw logging on
   yes | sudo ufw enable
   clear
-}
-
-get_masternode_status(){
-  echo ""
-  echo ""
-  echo "Head to QT and register your Masternode then come back to check."
-  echo ""
-  echo ""
-  echo "Wait till synced"
-  sudo su -c "syscoin-cli mnsync status"
-  echo ""
-  echo ""
-  sudo su -c "syscoin-cli masternode_status" 
-  echo ""
-  read -e -p "Check again? [Y/n]: " CHECK_AGAIN
-  if [ "$CHECK_AGAIN" = "" ] || [ "$CHECK_AGAIN" = "y" ] || [ "$CHECK_AGAIN" = "Y" ]; then
-    get_masternode_status
-  fi
 }
 
 # if there is <4gb and the user said yes to a swapfile...
@@ -456,12 +438,8 @@ sudo su -c "sentinel-ping" syscoin
 echo "$MESSAGE_COMPLETE"
 echo ""
 echo "Your masternode configuration should now be completed and running as the syscoin user."
-
-get_masternode_status
-
-
 echo ""
-echo "Masternode setup complete!"
-echo ""
+echo "Please run the following command"
+echo "source ~/.bashrc"
 
 do_exit
