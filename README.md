@@ -228,6 +228,7 @@ Your masternode is now registered and will appear on the Deterministic Masternod
 
 ## Specifying donation address for operatorReward (optional)
 **Syscoin Foundation Address:** ```sys1q6u9ey7qjh3fmnz5gsghcmpnjlh2akem4xm38sw```
+
 You only need to do this if you input a value greater than 0 when completing the ProRegTx for operatorReward. 
 
 ```protx update_service proTxHash ipAndPort operatorKey (operatorPayoutAddress feeSourceAddress)```
