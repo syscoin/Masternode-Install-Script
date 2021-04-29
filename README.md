@@ -155,7 +155,7 @@ You can use the following app to make it easier to do the following below;
 Open a text editor such as notepad ++ to prepare this command or head to [SysHub Masternode Registration](https://syshub-dev.web.app/masternodes/masternode-registration). 
 
 ## DONATE TO THE SYSCOIN FOUNDATION
-When Registering your Syscoin Masternode in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. 
+When Registering your Syscoin Masternode in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. If you do select an amount, there will be an extra step at the end of the tutorial that you will need to complete via Syscoin QT console. **The team thanks you in advance for your continued support.**
 
 Replace each argument to the command as follows:
 
@@ -165,7 +165,7 @@ Replace each argument to the command as follows:
 - ownerKeyAddr: The Syscoin address generated above for the owner address
 - operatorPubKey: The BLS public key generated above (or provided by your hosting service)
 - votingKeyAddr: The Syscoin address generated above, or the address of a delegate, used for proposal voting
-- operatorReward: The percentage of the block reward allocated to the operator as payment, 0 for no reward - this is if you want to pay someone else a % of your rewards.
+- operatorReward: The percentage of the block reward allocated to the operator as payment, 0 for no reward - this is if you want to pay someone else a % of your rewards. **This is the part where if you would like to donate to the Syscoin Foundation.**
 - payoutAddress: A Syscoin address to receive the owner’s masternode rewards.
 - feeSourceAddress: An (optional) address used to fund ProTx fee. payoutAddress will be used if not specified.
 
