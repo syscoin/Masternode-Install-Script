@@ -143,7 +143,9 @@ The private keys to the owner and fee source addresses must exist in the wallet 
 
 ```walletpassphrase yourSecretPassword 300```
 
+## Donate to the Syscoin Foundation
 
+When Registering your Syscoin Masternode in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. If you do select an amount, there will be an extra step at the end of the tutorial that you will need to complete via Syscoin QT console. **The team thanks you in advance for your continued support.**
 
 ## Register ProTx
 
@@ -154,10 +156,6 @@ This command has the following syntax:
 ```protx_register_prepare collateralHash collateralIndex ipAndPort ownerKeyAddr operatorPubKey votingKeyAddr operatorReward payoutAddress (feeSourceAddress)```
 
 Open a text editor such as notepad ++ to prepare this command or head to [SysHub Masternode Registration](https://syshub-dev.web.app/masternodes/masternode-registration). 
-
-## Donate to the Syscoin Foundation
-
-When Registering your Syscoin Masternode in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. If you do select an amount, there will be an extra step at the end of the tutorial that you will need to complete via Syscoin QT console. **The team thanks you in advance for your continued support.**
 
 Replace each argument to the command as follows:
 
