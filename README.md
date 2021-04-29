@@ -215,7 +215,8 @@ The command takes the following syntax:
 
 Where:
 tx: The serialized transaction previously returned in the tx output field from the protx_register_prepare command
-sig: The message returned from the signmessagebech32 command
+sig: The message returned from the signmessagebech32 command.
+
 Example: (excluding “ ”)
 ```
 protx_register_submit 5000000000010163dc2d9a36a7a620386a23002ab6b8a2aba0956e7e047b73a6cf27d9d51571e80100000000feffffff020000000000000000d16a4cce0100000000008d00cb63fec47e6cd65d7c6f2903e6d1de566539e5341fcde5e1200f92a404330000000000000000000000000000ffffa1618f4447c12f73258d961fe6082720ecc7415d4ebebdadb37905afc5f75d0a215951677703e41a108a67f2efb31110e392d988dbd4f9e8446a3336d59de1ff886ec0d3c65c822af2de2f73258d961fe6082720ecc7415d4ebebdadb3790000160014e7395ee2f4986418b03bee442c2f051c6357d0318e95079d496ed43baba5101dab0ab5ace776ac1b0b7fcba7711a2504c9ea36610074c89a3b00000000160014279a7a94c83130b3eee07f2c66b2faa94b6cfe990247304402201f1e01ab33d4f388386ca5df94818674cf4b1909806c3a92ffc11ded88d84dfb02206d289cca1fbd19bc5154c85ec4f1eb3748f77071d863ae4f6aa18f56807f76e801210298a88bd8293e4d0248eb89f276cb54c26b3686ea4e17df155a22bfed2426862800000000 IGj1ORdk3yv/uAMKG+DZrBA/GTHX4dW8zn/rmMfGzOzCIaxqmyUbNveYtnqh9wLVECENMjyuyeR2VmB3ccNlRLw=
@@ -224,7 +225,9 @@ Output:
 
 ```285fba6277586401f8efaf55d4eef7acfa6d690a30c0db7f213a0bb2c6194bd1```
 
-Your masternode is now registered and will appear on the Deterministic Masternode List after the transaction is mined to a block. You can view this list on the Masternodes tab in QT, or in the console using the command protx_list valid, where the txid of the final protx_register_submit transaction identifies your masternode.
+Your masternode is now registered and will appear on the Deterministic Masternode List after the transaction is mined to a block. 
+
+You can view this list on the Masternodes tab in QT, or in the console using the command protx_list valid, where the txid of the final protx_register_submit transaction identifies your masternode.
 
 ## Specifying donation address for operatorReward (optional)
 **Syscoin Foundation Address:** ```sys1q6u9ey7qjh3fmnz5gsghcmpnjlh2akem4xm38sw```
