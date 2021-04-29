@@ -152,7 +152,10 @@ You can use the following app to make it easier to do the following below;
 
 ```protx_register_prepare collateralHash collateralIndex ipAndPort ownerKeyAddr operatorPubKey votingKeyAddr operatorReward payoutAddress (feeSourceAddress)```
 
-Open a text editor such as notepad ++ to prepare this command or head to **SYShub**. 
+Open a text editor such as notepad ++ to prepare this command or head to [SysHub Masternode Registration](https://syshub-dev.web.app/masternodes/masternode-registration). 
+
+## DONATE TO THE SYSCOIN FOUNDATION
+When Registering your Syscoin Masternode in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. 
 
 Replace each argument to the command as follows:
 
