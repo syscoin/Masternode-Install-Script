@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # Only run as a root user
 if [ "$(sudo id -u)" != "0" ]; then
@@ -9,7 +9,7 @@ fi
 HBAR="---------------------------------------------------------------------------------------"
 
 # import messages
-source <(curl -sL https://raw.githubusercontent.com/syscoin/Masternode-Install-Script/master/messages.sh) 
+source <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-Install-Script/master/messages.sh) 
 
 pause(){
   echo ""
@@ -17,10 +17,13 @@ pause(){
 }
 
 do_exit(){
+  echo "$MESSAGE_COMPLETE"
   echo ""
-  echo "======================================================================================"
-  echo "             Install script for Syscoin 4 Masternodes"
-  echo "======================================================================================"
+  echo "Your masternode configuration should now be completed and running as the syscoin user."
+  echo ""
+  echo "Please run the following command"
+  echo "source ~/.bashrc"
+  echo ""
   echo ""
   echo "Big thanks to demesm & doublesharp for the original script"
   echo ""
@@ -71,89 +74,19 @@ maybe_create_swap_file(){
   fi
 }
 
-install_dependencies(){
-  echo "$MESSAGE_DEPENDENCIES"
-  # build tools
-  sudo apt install -y build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 software-properties-common
-  # boost
-  sudo apt install -y libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev libboost-iostreams-dev
-  # bdb 4.8
-  sudo add-apt-repository -y ppa:bitcoin/bitcoin
-  sudo apt update -y
-  sudo apt install -y libdb4.8-dev libdb4.8++-dev
-  # zmq
-  sudo apt install -y libzmq3-dev
-  # git
-  sudo apt install -y git
-  # virtualenv python
-  sudo apt install -y python-virtualenv
-  clear
-}
-
-make_clean(){
-  echo "Running Clean Up"
-  cd ~/syscoin
-  sudo make uninstall
-  sudo make clean
-  clear
-}
-
-git_clone_repository(){
-  echo "$MESSAGE_CLONING"
-  cd
-  if [ ! -d ~/syscoin ]; then
-    git clone https://github.com/syscoin/syscoin.git
-  fi
-}
-
 syscoin_branch(){
-  read -e -p "Syscoin Core Github Branch [master]: " SYSCOIN_BRANCH
+  read -e -p "Syscoin Core Github Tag [master]: " SYSCOIN_BRANCH
   if [ "$SYSCOIN_BRANCH" = "" ]; then
-    SYSCOIN_BRANCH="master"
+    SYSCOIN_BRANCH="4.2.0"
   fi
 }
 
-git_checkout_branch(){
-  cd ~/syscoin
-  git fetch
-  git checkout $SYSCOIN_BRANCH --quiet
-  if [ ! $? = 0 ]; then
-    echo "$MESSAGE_ERROR"
-    echo "Unable to checkout https://www.github.com/syscoin/syscoin/tree/${SYSCOIN_BRANCH}, please make sure it exists."
-    echo ""
-    exit 1
-  fi
-  git pull
-}
-
-autogen(){
-  echo "$MESSAGE_AUTOGEN"
-  cd ~/syscoin
-  ./autogen.sh
-  clear
-}
-
-configure(){
-  echo "$MESSAGE_MAKE_CONFIGURE"
-  cd ~/syscoin
-  ./configure --disable-tests --disable-bench --with-gui=no
-  clear
-}
-
-compile(){
-  echo "$MESSAGE_MAKE"
-  echo "Running compile with $(nproc) core(s)..."
-  # compile using all available cores
-  cd ~/syscoin
-  make -j$(nproc)
-  clear
-}
-
-make_install() {
-  echo "$MESSAGE_MAKE_INSTALL"
-  # install the binaries to /usr/local/bin
-  cd ~/syscoin
-  sudo make install
+install_binaries(){
+  echo "$MESSAGE_DEPENDENCIES"
+  wget https://github.com/syscoin/syscoin/releases/download/v$SYSCOIN_BRANCH/syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
+  tar xf syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
+  sudo install -m 0755 -o root -g root -t /usr/local/bin syscoin-$SYSCOIN_BRANCH/bin/*
+  rm -r syscoin-$SYSCOIN_BRANCH
   clear
 }
 
@@ -176,10 +109,10 @@ install_virtualenv(){
   echo "$MESSAGE_VIRTUALENV"
   cd ~/sentinel
   # install virtualenv
-  sudo apt-get install -y python-virtualenv virtualenv
+  sudo apt-get -y install git python3 virtualenv
   # setup virtualenv
-  virtualenv venv
-  venv/bin/pip install -r requirements.txt
+  virtualenv -p $(which python3) ./venv
+  ./venv/bin/pip install -r requirements.txt
   clear
 }
 
@@ -209,7 +142,7 @@ configure_sentinel(){
 
   # setup cron for syscoin user
   sudo crontab -r -u syscoin
-  sudo crontab -l -u syscoin | grep sentinel-ping || echo "*/5 * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
+  sudo crontab -l -u syscoin | grep sentinel-ping || echo "* * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
   clear
 }
 
@@ -227,18 +160,11 @@ stop_syscoind(){
 }
 
 upgrade() {
-  syscoin_branch      # ask which branch to use
-  clear
+  syscoin_branch
   stop_syscoind       # stop syscoind if it is running
-  make_clean
-  install_dependencies # make sure we have the latest deps
+  install_binaries # make sure we have the latest deps
   update_system       # update all the system libraries
-  git_checkout_branch # check out our branch
   clear
-  autogen             # run ./autogen.sh
-  configure           # run ./configure
-  compile             # make and make install
-  make_install        # install the binaries
 
   # maybe upgrade sentinel
   if [ "$IS_UPGRADE_SENTINEL" = "" ] || [ "$IS_UPGRADE_SENTINEL" = "y" ] || [ "$IS_UPGRADE_SENTINEL" = "Y" ]; then
@@ -252,7 +178,6 @@ upgrade() {
   start_syscoind      # start syscoind back up
   
   echo "$MESSAGE_COMPLETE"
-  echo "Syscoin Core update complete using https://www.github.com/syscoin/syscoin/tree/${SYSCOIN_BRANCH}!"
   do_exit             # exit the script
 }
 
@@ -307,33 +232,14 @@ if grep -q '^syscoin:' /etc/passwd; then
 fi
 clear
 
-RESOLVED_ADDRESS=$(curl -s ipinfo.io/ip)
-
-echo "$MESSAGE_CONFIGURE"
-echo ""
-echo "This script has been tested on Ubuntu 18.04 LTS x64."
-echo ""
-echo "Before starting script ensure you have: "
-echo ""
-echo "  - Sent 100,000SYS to your masternode address"
-echo "  - Run 'masternode genkey' and 'masternode outputs' and recorded the outputs" 
-echo "  - Added masternode config file"
-echo "    - addressAlias vpsIp:8369 masternodePrivateKey transactionId outputIndex"
-echo "    - EXAMPLE: mn1 ${RESOLVED_ADDRESS}:8369 ctk9ekf0m3049fm930jf034jgwjfk zkjfklgjlkj3rigj3io4jgklsjgklsjgklsdj 0"
-echo "  - Restarted Syscoin-Qt"
-echo ""
-echo "Default values are in brackets [default] or capitalized [Y/n] - pressing enter will use this value."
-echo ""
-echo "$HBAR"
-echo ""
-
 SYSCOIN_BRANCH="master"
+RESOLVED_ADDRESS=$(curl -s ipinfo.io/ip)
 DEFAULT_PORT=8369
 
 # syscoin.conf value defaults
 rpcuser="sycoinrpc"
 rpcpassword="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
-masternodeprivkey=""
+masternodeblsprivkey=""
 externalip="$RESOLVED_ADDRESS"
 port="$DEFAULT_PORT"
 
@@ -371,20 +277,19 @@ if [ "$MASTERNODE_PORT" = "" ]; then
   MASTERNODE_PORT="$port"
 fi
 
-masternode_private_key(){
-  read -e -p "Masternode Private Key [$masternodeprivkey]: " MASTERNODE_PRIVATE_KEY
-  if [ "$MASTERNODE_PRIVATE_KEY" = "" ]; then
-    if [ "$masternodeprivkey" != "" ]; then
-      MASTERNODE_PRIVATE_KEY="$masternodeprivkey"
+masternode_bls_key(){
+  read -e -p "Masternode BLS Key [$masternodeblskey]: " MASTERNODE_BLS_KEY
+  if [ "$MASTERNODE_BLS_KEY" = "" ]; then
+    if [ "$masternodeblsprivkey" != "" ]; then
+      MASTERNODE_BLS_KEY="$masternodeblsprivkey"
     else
-      echo "You must enter a masternode private key!";
-      masternode_private_key
+      echo "You must enter a Masternode BLS Key!";
+      masternode_bls_key
     fi
   fi
 }
 
-
-masternode_private_key
+masternode_bls_key
 
 read -e -p "Configure for mainnet? [Y/n]: " IS_MAINNET
 
@@ -396,31 +301,38 @@ clear
 
 # syscoin conf file
 SYSCOIN_CONF=$(cat <<EOF
-# rpc config
 rpcuser=user
 rpcpassword=$RPC_PASSWORD
-rpcallowip=127.0.0.1
-rpcbind=127.0.0.1
-rpcport=8370
-# syscoind config
 listen=1
-server=1
 daemon=1
-maxconnections=24
-# masternode config
-masternode=1
-masternodeprivkey=$MASTERNODE_PRIVATE_KEY
+server=1
+assetindex=1
+port=8369
+rpcport=8370
+rpcallowip=127.0.0.1
+masternodeblsprivkey=$MASTERNODE_BLS_KEY
 externalip=$EXTERNAL_ADDRESS
-port=$MASTERNODE_PORT
 EOF
 )
 
 # testnet config
 SYSCOIN_TESTNET_CONF=$(cat <<EOF
-# testnet config
+testnet=1
+[test]
+rpcuser=user
+rpcpassword=$RPC_PASSWORD
+listen=1
+daemon=1
+server=1
+assetindex=1
+port=18369
+rpcport=18370
+rpcallowip=127.0.0.1
+externalip=$EXTERNAL_ADDRESS
 gethtestnet=1
-addnode=54.203.169.179
 addnode=54.190.239.153
+addnode=52.40.171.92
+masternodeblsprivkey=$MASTERNODE_BLS_KEY
 EOF
 )
 
@@ -454,11 +366,11 @@ create_and_configure_syscoin_user(){
   grep -q "alias syscoin-cli" ~/.bashrc || echo "alias syscoin-cli='syscli'" >> ~/.bashrc
   grep -q "sysd\(\)" ~/.bashrc || echo "sysd() { sudo su -c \"syscoind \$*\" syscoin; }" >> ~/.bashrc
   grep -q "alias syscoind" ~/.bashrc || echo "alias syscoind='sysd'" >> ~/.bashrc
-  grep -q "sysmasternode\(\)" ~/.bashrc || echo "sysmasternode() { bash <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-install-script/master/script.sh) ; }" >> ~/.bashrc
+  grep -q "sysmasternode\(\)" ~/.bashrc || echo "sysmasternode() { bash <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-Install-Script/master/script.sh) ; }" >> ~/.bashrc
 
   echo "$SYSCOIN_CONF" > ~/syscoin.conf
   if [ ! "$IS_MAINNET" = "" ] && [ ! "$IS_MAINNET" = "y" ] && [ ! "$IS_MAINNET" = "Y" ]; then
-    echo "$SYSCOIN_TESTNET_CONF" >> ~/syscoin.conf
+    echo "$SYSCOIN_TESTNET_CONF" > ~/syscoin.conf
   fi
 
   # in case it's already running because this is a re-install
@@ -495,42 +407,24 @@ install_fail2ban(){
 
 install_ufw(){
   echo "$MESSAGE_UFW"
-  sudo apt-get install ufw -y
-  sudo ufw default deny incoming
-  sudo ufw default allow outgoing
-  sudo ufw allow ssh
+  sudo apt install ufw python-is-python3 virtualenv git unzip pv -y
+  sudo ufw allow ssh/tcp
+  sudo ufw limit ssh/tcp
+  sudo ufw allow 18369/tcp
   sudo ufw allow 8369/tcp
   sudo ufw allow 30303/tcp
+  sudo ufw logging on
   yes | sudo ufw enable
   clear
 }
 
-get_masternode_status(){
-  echo ""
-  sudo su -c "syscoin-cli mnsync status" syscoin && \
-  sudo su -c "syscoin-cli masternode status" syscoin
-  echo ""
-  read -e -p "Check again? [Y/n]: " CHECK_AGAIN
-  if [ "$CHECK_AGAIN" = "" ] || [ "$CHECK_AGAIN" = "y" ] || [ "$CHECK_AGAIN" = "Y" ]; then
-    get_masternode_status
-  fi
-}
-
 # if there is <4gb and the user said yes to a swapfile...
 maybe_create_swap_file
+install_ufw
 
 # prepare to build
 update_system
-install_dependencies
-git_clone_repository
-git_checkout_branch
-clear
-
-# run the build steps
-autogen
-configure
-compile
-make_install
+install_binaries
 clear
 
 create_and_configure_syscoin_user
@@ -540,39 +434,8 @@ install_sentinel
 install_virtualenv
 configure_sentinel
 install_fail2ban
-install_ufw
 clear
-
-echo "$MESSAGE_COMPLETE"
-echo ""
-echo "Your masternode configuration should now be completed and running as the syscoin user."
-echo "If you see MASTERNODE_SYNC_FINISHED return to Syscoin-Qt and start your node, otherwise check again."
-
-get_masternode_status
-
 # ping sentinel
 sudo su -c "sentinel-ping" syscoin
-
-echo ""
-echo "Masternode setup complete!"
-echo ""
-echo "======================================================================================"
-echo "Please run the following command to access syscoin-cli from this session or re-login."
-echo "======================================================================================"
-echo ""
-echo "  source ~/.bashrc"
-echo ""
-echo "======================================================================================"
-echo "You can run syscoin-cli commands as the syscoin user: "
-echo "======================================================================================"
-echo ""
-echo "  syscli getblockchaininfo"
-echo "  syscli masternode status"
-echo ""
-echo "======================================================================================"
-echo "To update this masternode just type:"
-echo "======================================================================================"
-echo ""
-echo "        sysmasternode"
 
 do_exit
