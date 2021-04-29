@@ -111,6 +111,8 @@ Press any key to continue or Ctrl+C to exit...
 Once the build process and configuration have completed, to access the syscoind and syscoin-cli executables via the new syscoin user type the below into cmd;
 ```source ~/.bashrc ```
 
+**Now head to your Syscoin QT to Register your masternode**
+
 ## Prepare a ProRegTx transaction
 
 A pair of BLS keys for the operator were already generated above, and the secret key was entered on the masternode. The public key is used in this transaction as the operatorPubKey
