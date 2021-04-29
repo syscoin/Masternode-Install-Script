@@ -111,6 +111,9 @@ Press any key to continue or Ctrl+C to exit...
 Once the build process and configuration have completed, to access the syscoind and syscoin-cli executables via the new syscoin user type the below into cmd;
 ```source ~/.bashrc ```
 
+To check on sync status type;
+```syscli mnsync status```
+
 **Now head to your Syscoin QT to Register your masternode**
 
 ## Prepare a ProRegTx transaction
