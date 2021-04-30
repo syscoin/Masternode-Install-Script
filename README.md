@@ -12,7 +12,7 @@
 - Linux OS — Minimum Ubuntu 18.04, LTS Ubuntu 20.04 LTS (Focal Fossa) preferred.
 - 80gb Disk Space (100gb+ SSD preferred).
 
-> If using an existing address with seniority you will have to manually ‘lock’ the collateral. Do this via Coin Control - right click your 100k tx and click "Lock Unspent". You do not need to make a new transaction. Doing so will lose your Seniority. If setting up a Masternode with a seniority address you can skip to generating your BLS KEYS.
+> **If using an existing address with seniority you will have to manually ‘lock’ the collateral. Do this via Coin Control - right click your 100k tx and click "Lock Unspent". You do not need to make a new transaction. Doing so will lose your Seniority. If setting up a Masternode with a seniority address you can skip to generating your BLS KEYS.**
 > 
 
 ## VPS Providers
@@ -66,7 +66,6 @@ Note some commands now require an underscore
 
 This should return a string of characters similar to the following:
 
-Note this only show unlocked 100,000 transactions.
 ```
 {
   "3304a4920f20e1e5cd1f34e5396556ded1e603296f7c5dd66c7ec4fe63cb008d": "0"
