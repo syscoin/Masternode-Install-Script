@@ -15,6 +15,9 @@
 > If using an existing address with seniority you will have to manually ‘lock’ the collateral. Do this via Coin Control - right click your 100k tx and click "Lock Unspent". You do not need to make a new transaction. Doing so will lose your Seniority. If setting up a Masternode with a seniority address you can skip to generating your BLS KEYS.
 > 
 
+## Video Walkthrough
+[Masternode Install Guide](https://www.youtube.com/watch?v=pOwcFMP92hY)
+
 ## VPS Providers
 
 There are many VPS service providers that offer and exceed the hardware requirements, as such it is recommended that you shop around and do your own homework on various potential providers. Note the following is a list of just some examples and should not be interpreted as recommendations or endorsement.
