@@ -237,7 +237,7 @@ You can view this list on the Masternodes tab in QT, or in the console using the
 
 You only need to do this if you input a value greater than 0 when completing the ProRegTx for operatorReward. 
 
-```protx update_service proTxHash ipAndPort operatorKey (operatorPayoutAddress feeSourceAddress)```
+```protx_update_service proTxHash ipAndPort operatorKey (operatorPayoutAddress feeSourceAddress)```
 
 Where:
 
