@@ -278,7 +278,7 @@ if [ "$MASTERNODE_PORT" = "" ]; then
 fi
 
 masternode_bls_key(){
-  read -e -p "Masternode BLS Key [$masternodeblskey]: " MASTERNODE_BLS_KEY
+  read -e -p "Masternode BLS Secret Key [$masternodeblskey]: " MASTERNODE_BLS_KEY
   if [ "$MASTERNODE_BLS_KEY" = "" ]; then
     if [ "$masternodeblsprivkey" != "" ]; then
       MASTERNODE_BLS_KEY="$masternodeblsprivkey"
