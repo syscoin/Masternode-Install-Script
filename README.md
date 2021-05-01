@@ -79,6 +79,9 @@ The first long string is your collateralHash, while the last number is the colla
 
 ## Generate BLS Key Pair
 
+> **NOTE: YOU MUST CREATE A BLS KEY PAIR FOR EVERY NODE**
+> 
+
 A public/secret BLS key pair is required to operate a masternode. The secret key is specified on the masternode itself, and allows it to be included in the deterministic masternode list once a provider registration transaction with the corresponding public key has been created.
 
 If you are using a hosting service, they may provide you with their public key, and you can skip this step. If you are hosting your own masternode or have agreed to provide your host with the BLS secret key, generate a BLS public/secret keypair in the Console and entering the following command:
