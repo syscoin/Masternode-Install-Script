@@ -256,6 +256,13 @@ Example:
 
 ```protx update_service 285fba6277586401f8efaf55d4eef7acfa6d690a30c0db7f213a0bb2c6194bd1 161.97.140.65:8369 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7 sys1q6u9ey7qjh3fmnz5gsghcmpnjlh2akem4xm38sw```
 
+## HOW TO UPGRADE YOUR VPS
+1. Login to your VPS via root. If you have disabled root login, sign in as user and sudo su
+2. Run the command ```sysmasternode```. If this does not work, run ```source ~/.bashrc```, then try again.
+3. Press enter for all requests, and install will begin.
+4. Once completed run ```syscli getnetworkinfo``` to check the version number.
+5. You may now exit from your VPS.
+
 
 ## MASTERNODE COMMANDS
 
