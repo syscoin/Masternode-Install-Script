@@ -94,6 +94,7 @@ install_binaries(){
   tar xf syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
   sudo install -m 0755 -o root -g root -t /usr/local/bin syscoin-$SYSCOIN_BRANCH/bin/*
   rm -r syscoin-$SYSCOIN_BRANCH
+  rm syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
   clear
 }
 
@@ -231,7 +232,7 @@ if grep -q '^syscoin:' /etc/passwd; then
   echo ""
   echo "$HBAR"
   echo ""
-  read -e -p "Upgrade/recompile Syscoin Core? [Y/n]: " IS_UPGRADE
+  read -e -p "Upgrade/reinstall Syscoin Core? [Y/n]: " IS_UPGRADE
   if [ "$IS_UPGRADE" = "" ] || [ "$IS_UPGRADE" = "y" ] || [ "$IS_UPGRADE" = "Y" ]; then
     read -e -p "Upgrade Sentinel as well? [Y/n]: " IS_UPGRADE_SENTINEL
     upgrade
