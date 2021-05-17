@@ -75,9 +75,14 @@ maybe_create_swap_file(){
 }
 
 syscoin_branch(){
-  read -e -p "Syscoin Core Github Tag [master]: " SYSCOIN_BRANCH
+  tag_url="https://github.com/syscoin/syscoin/releases/latest/"
+  tag_get="tag_name=v"
+  tag_grep=$(curl -sL $tag_url | grep -o -m1 "$tag_get\?[0-9]*\.[0-9]*\.[0-9]*")
+  ((tag_pos=${#tag_get}+1))
+  tag_ver=$(echo "$tag_grep" | cut -c$tag_pos-)
+  read -e -p "Syscoin Core Github Tag [$tag_ver]: " SYSCOIN_BRANCH
   if [ "$SYSCOIN_BRANCH" = "" ]; then
-    SYSCOIN_BRANCH="4.2.0"
+    SYSCOIN_BRANCH=$tag_ver
   fi
 }
 
@@ -87,6 +92,7 @@ install_binaries(){
   tar xf syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
   sudo install -m 0755 -o root -g root -t /usr/local/bin syscoin-$SYSCOIN_BRANCH/bin/*
   rm -r syscoin-$SYSCOIN_BRANCH
+  rm syscoin-$SYSCOIN_BRANCH-x86_64-linux-gnu.tar.gz
   clear
 }
 
@@ -167,7 +173,7 @@ upgrade() {
   clear
 
   # maybe upgrade sentinel
-  if [ "$IS_UPGRADE_SENTINEL" = "" ] || [ "$IS_UPGRADE_SENTINEL" = "y" ] || [ "$IS_UPGRADE_SENTINEL" = "Y" ]; then
+  if [ "$IS_UPGRADE_SENTINEL" = "y" ] || [ "$IS_UPGRADE_SENTINEL" = "Y" ]; then
     install_sentinel
     install_virtualenv
     configure_sentinel
@@ -224,9 +230,9 @@ if grep -q '^syscoin:' /etc/passwd; then
   echo ""
   echo "$HBAR"
   echo ""
-  read -e -p "Upgrade/recompile Syscoin Core? [Y/n]: " IS_UPGRADE
+  read -e -p "Upgrade/reinstall Syscoin Core? [Y/n]: " IS_UPGRADE
   if [ "$IS_UPGRADE" = "" ] || [ "$IS_UPGRADE" = "y" ] || [ "$IS_UPGRADE" = "Y" ]; then
-    read -e -p "Upgrade Sentinel as well? [Y/n]: " IS_UPGRADE_SENTINEL
+    read -e -p "Upgrade Sentinel as well? [y/N]: " IS_UPGRADE_SENTINEL
     upgrade
   fi
 fi
