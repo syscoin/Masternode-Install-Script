@@ -175,7 +175,7 @@ upgrade() {
   clear
 
   # maybe upgrade sentinel
-  if [ "$IS_UPGRADE_SENTINEL" = "" ] || [ "$IS_UPGRADE_SENTINEL" = "y" ] || [ "$IS_UPGRADE_SENTINEL" = "Y" ]; then
+  if [ "$IS_UPGRADE_SENTINEL" = "y" ] || [ "$IS_UPGRADE_SENTINEL" = "Y" ]; then
     install_sentinel
     install_virtualenv
     configure_sentinel
@@ -234,7 +234,7 @@ if grep -q '^syscoin:' /etc/passwd; then
   echo ""
   read -e -p "Upgrade/reinstall Syscoin Core? [Y/n]: " IS_UPGRADE
   if [ "$IS_UPGRADE" = "" ] || [ "$IS_UPGRADE" = "y" ] || [ "$IS_UPGRADE" = "Y" ]; then
-    read -e -p "Upgrade Sentinel as well? [Y/n]: " IS_UPGRADE_SENTINEL
+    read -e -p "Upgrade Sentinel as well? [y/N]: " IS_UPGRADE_SENTINEL
     upgrade
   fi
 fi
