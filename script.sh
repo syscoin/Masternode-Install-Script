@@ -84,8 +84,6 @@ syscoin_branch(){
   if [ "$SYSCOIN_BRANCH" = "" ]; then
     SYSCOIN_BRANCH=$tag_ver
   fi
-###--- could still use some checks against installed version here ---###
-###---      to prevent installing older versions by accident      ---###
 }
 
 install_binaries(){
