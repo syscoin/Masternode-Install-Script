@@ -259,7 +259,7 @@ Example:
 ## UPGRADING YOUR VPS
 1. Login to your VPS via root
 2. Run the cmd `sysmasternode`
-3. If this does not work, run the cmd `source ~/.bashrc` then rerun `sysmasternode
+3. If this does not work, run the cmd `source ~/.bashrc` then rerun `sysmasternode`
 4. Follow prompts to upgrade.
 
 ## MASTERNODE COMMANDS
