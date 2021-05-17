@@ -256,6 +256,11 @@ Example:
 
 ```protx update_service 285fba6277586401f8efaf55d4eef7acfa6d690a30c0db7f213a0bb2c6194bd1 161.97.140.65:8369 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7 sys1q6u9ey7qjh3fmnz5gsghcmpnjlh2akem4xm38sw```
 
+## UPGRADING YOUR VPS
+1. Login to your VPS via root
+2. Run the cmd `sysmasternode`
+3. If this does not work, run the cmd `source ~/.bashrc` then rerun `sysmasternode
+4. Follow prompts to upgrade.
 
 ## MASTERNODE COMMANDS
 
