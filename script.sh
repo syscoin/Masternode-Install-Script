@@ -76,7 +76,8 @@ maybe_create_swap_file(){
 
 syscoin_branch(){
   tag_url="https://github.com/syscoin/syscoin/releases/latest/"
-  tag_get="tag_name=v"
+  # tag_get="tag_name=v"
+  tag_get="/syscoin/syscoin/releases/tag/v"  
   tag_grep=$(curl -sL $tag_url | grep -o -m1 "$tag_get\?[0-9]*\.[0-9]*\.[0-9]*")
   ((tag_pos=${#tag_get}+1))
   tag_ver=$(echo "$tag_grep" | cut -c$tag_pos-)
