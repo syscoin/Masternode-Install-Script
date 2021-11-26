@@ -162,7 +162,7 @@ start_syscoind(){
 
 stop_syscoind(){
   echo "$MESSAGE_STOPPING"
-  sudo syscoin-cli stop && sleep 20
+  syscoin-cli stop && sleep 20
   clear
 }
 
