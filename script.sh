@@ -162,7 +162,8 @@ start_syscoind(){
 
 stop_syscoind(){
   echo "$MESSAGE_STOPPING"
-  syscoin-cli stop && sleep 20
+  syscoin-cli stop
+  sleep 20
   clear
 }
 
