@@ -371,7 +371,7 @@ create_and_configure_syscoin_user(){
   grep -q "syscli\(\)" ~/.bashrc || echo "syscli() { sudo su -c \"syscoin-cli \$*\" syscoin; }" >> ~/.bashrc
   grep -q "alias syscoin-cli" ~/.bashrc || echo "alias syscoin-cli='syscli'" >> ~/.bashrc
   grep -q "sysd\(\)" ~/.bashrc || echo "sysd() { sudo su -c \"syscoind \$*\" syscoin; }" >> ~/.bashrc
-  grep -q "alias syscoind" ~/.bashrc || echo "alias syscoind='sysd'" >> ~/.bashrc
+  grep -q "alias syscoind" ~/.bashrc || echo "alias syscoind='echo \"systemd is running as a service - please stop that process first, than use sysd instead of systemd\"'" >> ~/.bashrc
   grep -q "sysmasternode\(\)" ~/.bashrc || echo "sysmasternode() { bash <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-Install-Script/master/script.sh) ; }" >> ~/.bashrc
 
   echo "$SYSCOIN_CONF" > ~/syscoin.conf
