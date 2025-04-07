@@ -74,6 +74,17 @@ maybe_create_swap_file(){
   fi
 }
 
+remove_sentinel_if_exists(){
+  if [ -d "/home/syscoin/sentinel" ] || [ -d "$HOME/sentinel" ]; then
+    echo "Sentinel installation detected. Removing... "
+    sudo systemctl stop sentinel.service 2>/dev/null || true
+    sudo rm -rf /home/syscoin/sentinel "$HOME/sentinel"
+    sudo crontab -r -u syscoin 2>/dev/null || true
+    sudo rm -f /usr/local/bin/sentinel-ping
+    echo "Sentinel removed."
+  fi
+}
+
 syscoin_branch(){
   tag_url="https://github.com/syscoin/syscoin/releases/latest/"
   # tag_get="tag_name=v"
@@ -97,62 +108,6 @@ install_binaries(){
   clear
 }
 
-install_sentinel(){
-  echo "$MESSAGE_SENTINEL"
-  # go home
-  cd
-  if [ ! -d ~/sentinel ]; then
-    git clone https://github.com/syscoin/sentinel.git
-  else
-    cd sentinel
-    git fetch
-    git checkout master --quiet
-    git pull
-  fi
-  clear
-}
-
-install_virtualenv(){
-  echo "$MESSAGE_VIRTUALENV"
-  cd ~/sentinel
-  # install virtualenv
-  sudo apt-get -y install git python3 virtualenv
-  # setup virtualenv
-  virtualenv -p $(which python3) ./venv
-  ./venv/bin/pip install -r requirements.txt
-  clear
-}
-
-configure_sentinel(){
-  echo "$MESSAGE_CRONTAB"
-  # create sentinel conf file
-  echo "$SENTINEL_CONF" > ~/sentinel/sentinel.conf
-  if [ "$IS_MAINNET" = "" ] || [ "$IS_MAINNET" = "y" ] || [ "$IS_MAINNET" = "Y" ]; then
-    echo "network=mainnet" >> ~/sentinel/sentinel.conf
-  else
-    echo "network=testnet" >> ~/sentinel/sentinel.conf
-  fi
-
-  cd
-  if [ -d /home/syscoin/sentinel ]; then
-    sudo rm -rf /home/syscoin/sentinel
-  fi
-  sudo mv -f ~/sentinel /home/syscoin
-  sudo chown -R syscoin.syscoin /home/syscoin/sentinel
-
-  # create sentinel-ping
-  echo "$SENTINEL_PING" > ~/sentinel-ping
-
-  # install sentinel-ping script
-  sudo mv -f ~/sentinel-ping /usr/local/bin
-  sudo chmod +x /usr/local/bin/sentinel-ping
-
-  # setup cron for syscoin user
-  sudo crontab -r -u syscoin
-  sudo crontab -l -u syscoin | grep sentinel-ping || echo "* * * * * /usr/local/bin/sentinel-ping" | sudo crontab -u syscoin -
-  clear
-}
-
 start_syscoind(){
   echo "$MESSAGE_SYSCOIND"
   sudo service syscoind start     # start the service
@@ -173,10 +128,7 @@ upgrade() {
   install_binaries # make sure we have the latest deps
   update_system       # update all the system libraries
   clear
-  
-  install_sentinel
-  install_virtualenv
-  configure_sentinel
+  remove_sentinel_if_exists
   
   create_systemd_syscoind_service
 
@@ -200,24 +152,6 @@ clear
 
 # check if there is enough physical memory present
 maybe_prompt_for_swap_file
-
-# syscoind.service config
-SENTINEL_CONF=$(cat <<EOF
-# syscoin conf location
-syscoin_conf=/home/syscoin/.syscoin/syscoin.conf
-# db connection details
-db_name=/home/syscoin/sentinel/database/sentinel.db
-db_driver=sqlite
-# network
-EOF
-)
-
-# syscoind.service config
-SENTINEL_PING=$(cat <<EOF
-#!/bin/bash
-/home/syscoin/sentinel/venv/bin/python /home/syscoin/sentinel/bin/sentinel.py 2>&1 >> /home/syscoin/sentinel/sentinel-cron.log
-EOF
-)
 
 # check to see if there is already a syscoin user on the system
 if grep -q '^syscoin:' /etc/passwd; then
@@ -434,12 +368,8 @@ clear
 create_and_configure_syscoin_user
 create_systemd_syscoind_service
 start_syscoind
-install_sentinel
 install_virtualenv
-configure_sentinel
 install_fail2ban
 clear
-# ping sentinel
-sudo su -c "sentinel-ping" syscoin
 
 do_exit
