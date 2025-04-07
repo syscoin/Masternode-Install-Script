@@ -1,4 +1,4 @@
-# SYSCOIN LUX MASTERNODE SCRIPT
+# SYSCOIN NEXUS SENTRY NODE SCRIPT
 
 ![Sycoin Logo Scifi](https://github.com/syscoin/Masternode-Install-Script/blob/master/img/syscoin-logo.jpg)
 
@@ -9,14 +9,14 @@
 - 4gb RAM (real) minimum (8gb RAM preferred)
 - 4gb swap (if less than 8gb real RAM) Will need to use SSD if using Swap
 - KVM or OpenVZ (KVM preferred)
-- Linux OS — Minimum Ubuntu 18.04, LTS Ubuntu 20.04 LTS (Focal Fossa) preferred.
+- Linux OS — Minimum Ubuntu 24.04
 - 80gb Disk Space (100gb+ SSD preferred).
 
-> **If using an existing address with seniority you will have to manually ‘lock’ the collateral. Do this via Coin Control - right click your 100k tx and click "Lock Unspent". You do not need to make a new transaction. Doing so will lose your Seniority. If setting up a Masternode with a seniority address you can skip to generating your BLS KEYS.**
+> **If using an existing address with seniority you will have to manually ‘lock’ the collateral. Do this via Coin Control - right click your 100k tx and click "Lock Unspent". You do not need to make a new transaction. Doing so will lose your Seniority. If setting up a Sentry Node with a seniority address you can skip to generating your BLS KEYS.**
 > 
 
 ## Video Walkthrough
-[Masternode Install Guide](https://www.youtube.com/watch?v=pOwcFMP92hY)
+[Sentry Install Guide](https://www.youtube.com/watch?v=pOwcFMP92hY)
 
 ## VPS Providers
 
@@ -40,18 +40,17 @@ There are many VPS service providers that offer and exceed the hardware requirem
 - [RAMNode.com](https://RAMNode.com)
 - [Time4VPS.com](https://Time4VPS.com)
 
-## MASTERNODE HELP
-[SysHub](https://syshub.org): Register your masternodes with Syshub. You can also create Proposals through the generator for Governance and Vote on upcoming Proposals.
+## Sentry Node HELP
 
 [Syscoin Discord](https://discord.gg/RkK2AXD): If you require more help, jump into the Syscoin Discord and our community will be more than happy to help you out!
 
-[Sysnode.info](https://sysnode.info): This website has an array of tools such as Masternode Stats, Monitoring and keeping up to date with current news with Syscoin.
+[Sysnode.info](https://sysnode.info): This website has an array of tools such as Sentry Node Stats, Monitoring and keeping up to date with current news with Syscoin.
 
 ---
 
 ## Prepare QT and Send 100k Syscoin
 
-To stake your Masternode you will need to provide exactly **100,000 SYS** in your Masternode address. Use Syscoin Core Qt for your system to process this transaction.  
+To stake your Sentry Node you will need to provide exactly **100,000 SYS** in your Sentry Node address. Use Syscoin Core Qt for your system to process this transaction.  
 
 Create a new address for collateral this does not need to be a legacy address anymore, or you can use an existing seniority address. 
 If you are using an existing Seniority Address you do not have to make a new transaction or create a new address. 
@@ -82,11 +81,11 @@ The first long string is your collateralHash, while the last number is the colla
 > **NOTE: YOU MUST CREATE A BLS KEY PAIR FOR EVERY NODE**
 > 
 
-A public/secret BLS key pair is required to operate a masternode. The secret key is specified on the masternode itself, and allows it to be included in the deterministic masternode list once a provider registration transaction with the corresponding public key has been created.
+A public/secret BLS key pair is required to operate a Sentry Node. The secret key is specified on the Sentry Node itself, and allows it to be included in the deterministic Sentry Node list once a provider registration transaction with the corresponding public key has been created.
 
-If you are using a hosting service, they may provide you with their public key, and you can skip this step. If you are hosting your own masternode or have agreed to provide your host with the BLS secret key, generate a BLS public/secret keypair in the Console and entering the following command:
+If you are using a hosting service, they may provide you with their public key, and you can skip this step. If you are hosting your own Sentry Node or have agreed to provide your host with the BLS secret key, generate a BLS public/secret keypair in the Console and entering the following command:
 
-> These keys are NOT stored by the wallet and must be kept secure, similar to the value provided in the past by the masternode genkey command.
+> These keys are NOT stored by the wallet and must be kept secure, similar to the value provided in the past by the Sentry Node genkey command.
 > 
 
 ```bls_generate```
@@ -98,19 +97,19 @@ If you are using a hosting service, they may provide you with their public key, 
 }
 ```
 
-## Configure Masternode on VPS
+## Configure Sentry Node on VPS
 
 Finally we are ready to work on your server. Connect to your VPS as root via SSH (Putty) and enter the following command to start the automated install:
 
 ```bash <(curl -sL https://raw.githubusercontent.com/Syscoin/Masternode-install-script/master/script.sh)```
 
-Default values are found in brackets and pressing enter will selected the [default] value. For entries with a [Y/n] the capital letter is the default. Enter [Y] to choose “yes” or [N] to choose “no”. Likely the only value you will need to enter is your Masternode BLS Secret key.
+Default values are found in brackets and pressing enter will selected the [default] value. For entries with a [Y/n] the capital letter is the default. Enter [Y] to choose “yes” or [N] to choose “no”. Likely the only value you will need to enter is your Sentry Node BLS Secret key.
 
 ``` 
 Syscoin Core Github Branch [master]:
 External IP Address [123.123.123.123]: 
-Masternode Port [8369]: 
-Masternode BLS Secret Key []: 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7
+Sentry Node Port [8369]: 
+Sentry Node BLS Secret Key []: 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7
 Configure for mainnet? [Y/n]: 
  
 Press any key to continue or Ctrl+C to exit...
@@ -122,11 +121,11 @@ Once the build process and configuration have completed, to access the syscoind 
 To check on sync status type;
 ```syscli mnsync status```
 
-**Now head to your Syscoin QT to Register your masternode**
+**Now head to your Syscoin QT to Register your Sentry Node**
 
 ## Prepare a ProRegTx transaction
 
-A pair of BLS keys for the operator were already generated above, and the secret key was entered on the masternode. The public key is used in this transaction as the operatorPubKey
+A pair of BLS keys for the operator were already generated above, and the secret key was entered on the Sentry Node. The public key is used in this transaction as the operatorPubKey
 
 First, we need to get a new, unused address from the wallet to serve as the owner key address ownerKeyAddr. This is not the same as the collateral address holding 100,000 Syscoin. This address must be different for each MN. 
 
@@ -138,7 +137,7 @@ This address can also be used as the voting key address **votingKeyAddr**. Alter
 
 ```getnewaddress mn1-voting```
 
-Then either generate or choose an existing address to receive the owner’s masternode payouts **payoutAddress**. This address cannot be the same as your owner or voting address, it is also possible to use an address external to the wallet:
+Then either generate or choose an existing address to receive the owner’s Sentry Node payouts **payoutAddress**. This address cannot be the same as your owner or voting address, it is also possible to use an address external to the wallet:
 
 ```getnewaddress payouts```
 
@@ -153,7 +152,7 @@ The private keys to the owner and fee source addresses must exist in the wallet 
 
 ## Donate to the Syscoin Foundation
 
-When Registering your Syscoin Masternode in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. If you do select an amount, there will be an extra step at the end of the tutorial that you will need to complete via Syscoin QT console. **The team thanks you in advance for your continued support.**
+When Registering your Syscoin Sentry Node in the next step you have the option to donate a percentage of your rewards to someone else via the **operatorReward** argument. Please help support the team and choose an amount that you are happy to donate such as 5% to 10%. By doing this you help the efforts of the Foundation on creating a solid network and the continued development of Syscoin. If you do select an amount, there will be an extra step at the end of the tutorial that you will need to complete via Syscoin QT console. **The team thanks you in advance for your continued support.**
 
 ## Register ProTx
 
@@ -163,21 +162,21 @@ This command has the following syntax:
 
 ```protx_register_prepare collateralHash collateralIndex ipAndPort ownerKeyAddr operatorPubKey votingKeyAddr operatorReward payoutAddress (feeSourceAddress)```
 
-Open a text editor such as notepad ++ to prepare this command or head to [SysHub Masternode Registration](https://syshub-dev.web.app/masternodes/masternode-registration). 
+Open a text editor such as notepad ++ to prepare this command.
 
 Replace each argument to the command as follows:
 
 - collateralHash: The txid of the 100000 Syscoin collateral funding transaction
 - collateralIndex: The output index of the 100000 Syscoin funding transaction
-- ipAndPort: Masternode IP address and port, in the format x.x.x.x:yyyy
+- ipAndPort: Sentry Node IP address and port, in the format x.x.x.x:yyyy
 - ownerKeyAddr: The Syscoin address generated above for the owner address
 - operatorPubKey: The BLS public key generated above (or provided by your hosting service)
 - votingKeyAddr: The Syscoin address generated above, or the address of a delegate, used for proposal voting
 - operatorReward: The percentage of the block reward allocated to the operator as payment, 0 for no reward - this is if you want to pay someone else a % of your rewards. **This is the part where if you would like to donate to the Syscoin Foundation.**
-- payoutAddress: A Syscoin address to receive the owner’s masternode rewards.
+- payoutAddress: A Syscoin address to receive the owner’s Sentry Node rewards.
 - feeSourceAddress: An (optional) address used to fund ProTx fee. payoutAddress will be used if not specified.
 
->Note that the operator is responsible for specifying their own reward address in a separate update_service transaction if you specify a non-zero operatorReward. The owner of the masternode collateral does not specify the operator’s payout address.
+>Note that the operator is responsible for specifying their own reward address in a separate update_service transaction if you specify a non-zero operatorReward. The owner of the Sentry Node collateral does not specify the operator’s payout address.
 >
 
 Either the **feeSourceAddress** or **payoutAddress** must hold a small balance since a standard transaction fee is involved.
@@ -215,7 +214,7 @@ Output:
 
 ## Submit the signed message
 
-We will now submit the ProRegTx special transaction to the blockchain to register the masternode. This command must be sent from the wallet holding a balance on either the feeSourceAddress or payoutAddress, since a standard transaction fee is involved. 
+We will now submit the ProRegTx special transaction to the blockchain to register the Sentry Node. This command must be sent from the wallet holding a balance on either the feeSourceAddress or payoutAddress, since a standard transaction fee is involved. 
 
 The command takes the following syntax:
 
@@ -233,12 +232,12 @@ Output:
 
 ```285fba6277586401f8efaf55d4eef7acfa6d690a30c0db7f213a0bb2c6194bd1```
 
-Your masternode is now registered and will appear on the Deterministic Masternode List after the transaction is mined to a block. 
+Your Sentry Node is now registered and will appear on the Deterministic Sentry Node List after the transaction is mined to a block. 
 
-You can view this list on the Masternodes tab in QT, or in the console using the command protx_list valid, where the txid of the final protx_register_submit transaction identifies your masternode.
+You can view this list on the Sentry Node tab in QT, or in the console using the command protx_list valid, where the txid of the final protx_register_submit transaction identifies your Sentry Node.
 
 ## Specifying donation address for operatorReward (optional)
-**Syscoin Foundation Address:** ```sys1q6u9ey7qjh3fmnz5gsghcmpnjlh2akem4xm38sw```
+**Syscoin Foundation Address:** ```sys1qlzkpdju932ferzdt6jvln4hk3hmmlqxswfhpj4```
 
 You only need to do this if you input a value greater than 0 when completing the ProRegTx for operatorReward. 
 
@@ -254,7 +253,7 @@ Where:
 
 Example:
 
-```protx update_service 285fba6277586401f8efaf55d4eef7acfa6d690a30c0db7f213a0bb2c6194bd1 161.97.140.65:8369 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7 sys1q6u9ey7qjh3fmnz5gsghcmpnjlh2akem4xm38sw```
+```protx update_service 285fba6277586401f8efaf55d4eef7acfa6d690a30c0db7f213a0bb2c6194bd1 161.97.140.65:8369 1a8f477d2b02650b7d159efe315940f05252334eb292376309386cc99b0c4ec7 sys1qlzkpdju932ferzdt6jvln4hk3hmmlqxswfhpj4```
 
 ## UPGRADING YOUR VPS
 1. Login to your VPS via root
@@ -262,7 +261,7 @@ Example:
 3. If this does not work, run the cmd `source ~/.bashrc` then rerun `sysmasternode`
 4. Follow prompts to upgrade.
 
-## MASTERNODE COMMANDS
+## SENTRY NODE COMMANDS
 
 ###### view your syscoin.conf
 ```
