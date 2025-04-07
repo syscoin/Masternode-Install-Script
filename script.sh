@@ -345,7 +345,6 @@ install_fail2ban(){
 
 install_ufw(){
   echo "$MESSAGE_UFW"
-  sudo apt install ufw python-is-python3 virtualenv git unzip pv -y
   sudo ufw allow ssh/tcp
   sudo ufw limit ssh/tcp
   sudo ufw allow 18369/tcp
@@ -368,7 +367,6 @@ clear
 create_and_configure_syscoin_user
 create_systemd_syscoind_service
 start_syscoind
-install_virtualenv
 install_fail2ban
 clear
 
