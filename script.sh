@@ -19,7 +19,7 @@ pause(){
 do_exit(){
   echo "$MESSAGE_COMPLETE"
   echo ""
-  echo "Your masternode configuration should now be completed and running as the syscoin user."
+  echo "Your Sentry Node configuration should now be completed and running as the syscoin user."
   echo ""
   echo "Please run the following command"
   echo "source ~/.bashrc"
@@ -224,8 +224,8 @@ if grep -q '^syscoin:' /etc/passwd; then
   clear
   echo "$MESSAGE_UPGRADE"
   echo ""
-  echo "  Choose [Y]es (default) to upgrade Syscoin Core on a working masternode."
-  echo "  Choose [N]o to re-run the configuration process for your masternode."
+  echo "  Choose [Y]es (default) to upgrade Syscoin Core on a working Sentry."
+  echo "  Choose [N]o to re-run the configuration process for your Sentry."
   echo ""
   echo "$HBAR"
   echo ""
@@ -243,7 +243,7 @@ DEFAULT_PORT=8369
 # syscoin.conf value defaults
 rpcuser="sycoinrpc"
 rpcpassword="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
-masternodeblsprivkey=""
+nodeblsprivkey=""
 externalip="$RESOLVED_ADDRESS"
 port="$DEFAULT_PORT"
 
@@ -257,7 +257,7 @@ fi
 
 RPC_USER="$rpcuser"
 RPC_PASSWORD="$rpcpassword"
-MASTERNODE_PORT="$port"
+NODE_PORT="$port"
 
 # ask which branch to use
 syscoin_branch
@@ -276,24 +276,24 @@ if [ "$port" != "" ] && [ "$port" != "$DEFAULT_PORT" ]; then
   echo "WARNING: The syscoin.conf value for port=${port} does not match the default of ${DEFAULT_PORT}."
   echo ""
 fi
-read -e -p "Masternode Port [$port]: " MASTERNODE_PORT
-if [ "$MASTERNODE_PORT" = "" ]; then
-  MASTERNODE_PORT="$port"
+read -e -p "Sentry Node Port [$port]: " NODE_PORT
+if [ "$NODE_PORT" = "" ]; then
+  NODE_PORT="$port"
 fi
 
-masternode_bls_key(){
-  read -e -p "Masternode BLS Secret Key [$masternodeblskey]: " MASTERNODE_BLS_KEY
-  if [ "$MASTERNODE_BLS_KEY" = "" ]; then
-    if [ "$masternodeblsprivkey" != "" ]; then
-      MASTERNODE_BLS_KEY="$masternodeblsprivkey"
+node_bls_key(){
+  read -e -p "Sentry Node BLS Secret Key [$nodeblskey]: " NODE_BLS_KEY
+  if [ "$NODE_BLS_KEY" = "" ]; then
+    if [ "$nodeblsprivkey" != "" ]; then
+      NODE_BLS_KEY="$nodeblsprivkey"
     else
-      echo "You must enter a Masternode BLS Key!";
-      masternode_bls_key
+      echo "You must enter a Sentry Node BLS Key!";
+      node_bls_key
     fi
   fi
 }
 
-masternode_bls_key
+node_bls_key
 
 read -e -p "Configure for mainnet? [Y/n]: " IS_MAINNET
 
@@ -314,7 +314,7 @@ assetindex=1
 port=8369
 rpcport=8370
 rpcallowip=127.0.0.1
-masternodeblsprivkey=$MASTERNODE_BLS_KEY
+nodeblsprivkey=$NODE_BLS_KEY
 externalip=$EXTERNAL_ADDRESS
 EOF
 )
@@ -336,7 +336,7 @@ externalip=$EXTERNAL_ADDRESS
 gethtestnet=1
 addnode=54.190.239.153
 addnode=52.40.171.92
-masternodeblsprivkey=$MASTERNODE_BLS_KEY
+nodeblsprivkey=$NODE_BLS_KEY
 EOF
 )
 
@@ -358,7 +358,7 @@ WantedBy=multi-user.target
 EOF
 )
 
-# functions to install a masternode from scratch
+# functions to install a Sentry Node from scratch
 create_and_configure_syscoin_user(){
   echo "$MESSAGE_CREATE_USER"
 
