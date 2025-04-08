@@ -244,7 +244,6 @@ rpcpassword=$RPC_PASSWORD
 listen=1
 daemon=1
 server=1
-assetindex=1
 port=8369
 rpcport=8370
 rpcallowip=127.0.0.1
@@ -262,14 +261,12 @@ rpcpassword=$RPC_PASSWORD
 listen=1
 daemon=1
 server=1
-assetindex=1
 port=18369
 rpcport=18370
 rpcallowip=127.0.0.1
 externalip=$EXTERNAL_ADDRESS
-gethtestnet=1
-addnode=54.190.239.153
-addnode=52.40.171.92
+addnode=54.203.37.244
+addnode=35.84.168.199
 nodeblsprivkey=$NODE_BLS_KEY
 EOF
 )
