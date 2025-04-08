@@ -265,8 +265,6 @@ port=18369
 rpcport=18370
 rpcallowip=127.0.0.1
 externalip=$EXTERNAL_ADDRESS
-addnode=54.203.37.244
-addnode=35.84.168.199
 nodeblsprivkey=$NODE_BLS_KEY
 EOF
 )
