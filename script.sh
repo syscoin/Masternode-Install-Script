@@ -247,7 +247,7 @@ server=1
 port=8369
 rpcport=8370
 rpcallowip=127.0.0.1
-nodeblsprivkey=$NODE_BLS_KEY
+masternodeblsprivkey=$NODE_BLS_KEY
 externalip=$EXTERNAL_ADDRESS
 EOF
 )
@@ -265,7 +265,7 @@ port=18369
 rpcport=18370
 rpcallowip=127.0.0.1
 externalip=$EXTERNAL_ADDRESS
-nodeblsprivkey=$NODE_BLS_KEY
+masternodeblsprivkey=$NODE_BLS_KEY
 EOF
 )
 
