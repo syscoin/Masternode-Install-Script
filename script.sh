@@ -129,6 +129,12 @@ upgrade() {
   update_system       # update all the system libraries
   clear
   remove_sentinel_if_exists
+
+  CONF_PATH="/home/syscoin/.syscoin/syscoin.conf"
+  if sudo grep -q '^nodeblsprivkey=' "$CONF_PATH"; then
+    echo "Fixing legacy config key 'nodeblsprivkey' to 'masternodeblsprivkey'..."
+    sudo sed -i 's/^nodeblsprivkey=/masternodeblsprivkey=/' "$CONF_PATH"
+  fi
   
   create_systemd_syscoind_service
 
