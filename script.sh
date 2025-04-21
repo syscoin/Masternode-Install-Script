@@ -129,6 +129,12 @@ upgrade() {
   update_system       # update all the system libraries
   clear
   remove_sentinel_if_exists
+
+  CONF_PATH="/home/syscoin/.syscoin/syscoin.conf"
+  if sudo grep -q '^nodeblsprivkey=' "$CONF_PATH"; then
+    echo "Fixing legacy config key 'nodeblsprivkey' to 'masternodeblsprivkey'..."
+    sudo sed -i 's/^nodeblsprivkey=/masternodeblsprivkey=/' "$CONF_PATH"
+  fi
   
   create_systemd_syscoind_service
 
@@ -177,7 +183,7 @@ DEFAULT_PORT=8369
 # syscoin.conf value defaults
 rpcuser="sycoinrpc"
 rpcpassword="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)"
-nodeblsprivkey=""
+masternodeblsprivkey=""
 externalip="$RESOLVED_ADDRESS"
 port="$DEFAULT_PORT"
 
@@ -247,7 +253,7 @@ server=1
 port=8369
 rpcport=8370
 rpcallowip=127.0.0.1
-nodeblsprivkey=$NODE_BLS_KEY
+masternodeblsprivkey=$NODE_BLS_KEY
 externalip=$EXTERNAL_ADDRESS
 EOF
 )
@@ -265,7 +271,7 @@ port=18369
 rpcport=18370
 rpcallowip=127.0.0.1
 externalip=$EXTERNAL_ADDRESS
-nodeblsprivkey=$NODE_BLS_KEY
+masternodeblsprivkey=$NODE_BLS_KEY
 EOF
 )
 
